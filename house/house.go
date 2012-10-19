@@ -36,13 +36,13 @@ type Room struct {
   // opengl stuff
   // Vertex buffer storing the vertices of the room as well as the texture
   // coordinates for the los texture.
-  vbuffer uint32
+  vbuffer gl.Uint
 
   // index buffers
-  left_buffer  uint32
-  right_buffer uint32
-  floor_buffer uint32
-  floor_count  int
+  left_buffer  gl.Uint
+  right_buffer gl.Uint
+  floor_buffer gl.Uint
+  floor_count  gl.Int
 
   // we don't want to redo all of the vertex and index buffers unless we
   // need to, so we keep track of the position and size of the room when they
@@ -164,9 +164,9 @@ type doorState struct {
 }
 
 type doorGlIds struct {
-  vbuffer uint32
+  vbuffer gl.Uint
 
-  floor_buffer uint32
+  floor_buffer gl.Uint
   floor_count  gl.Sizei
 }
 

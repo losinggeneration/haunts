@@ -92,7 +92,7 @@ type roomVertex struct {
 }
 
 type plane struct {
-  index_buffer uint32
+  index_buffer gl.Uint
   texture      texture.Object
   mat          *mathgl.Mat4
 }
@@ -250,8 +250,8 @@ func (room *Room) getMaxLosAlpha(los_tex *LosTexture) byte {
   return max_room_alpha
 }
 
-func alphaMult(a, b byte) byte {
-  return byte((int(a) * int(b)) >> 8)
+func alphaMult(a, b byte) gl.Ubyte {
+  return gl.Ubyte((int(a) * int(b)) >> 8)
 }
 
 var Num_rows float32 = 1150
@@ -321,7 +321,7 @@ func (room *Room) render(floor, left, right mathgl.Mat4, zoom float32, base_alph
         }
         door.TextureData().Bind()
         R, G, B, A := door.Color()
-        do_color(R, G, B, alphaMult(A, room.far_left.wall_alpha))
+        do_color(R, G, B, byte(alphaMult(A, room.far_left.wall_alpha)))
         gl.ClientActiveTexture(gl.TEXTURE0)
         door.TextureData().Bind()
         if door.door_glids.floor_buffer != 0 {
@@ -347,7 +347,7 @@ func (room *Room) render(floor, left, right mathgl.Mat4, zoom float32, base_alph
         }
         door.TextureData().Bind()
         R, G, B, A := door.Color()
-        do_color(R, G, B, alphaMult(A, room.far_right.wall_alpha))
+        do_color(R, G, B, byte(alphaMult(A, room.far_right.wall_alpha)))
         gl.ClientActiveTexture(gl.TEXTURE0)
         door.TextureData().Bind()
         if door.door_glids.floor_buffer != 0 {
@@ -458,19 +458,19 @@ func (room *Room) render(floor, left, right mathgl.Mat4, zoom float32, base_alph
       gl.ClientActiveTexture(gl.TEXTURE0)
       if ids.floor_buffer != 0 {
         gl.StencilFunc(gl.ALWAYS, 2, 2)
-        gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.Uint(ids.floor_buffer))
+        gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, ids.floor_buffer)
         gl.Color4ub(gl.Ubyte(R), gl.Ubyte(G), gl.Ubyte(B), gl.Ubyte(A))
         gl.DrawElements(gl.TRIANGLES, ids.floor_count, gl.UNSIGNED_SHORT, nil)
       }
       if ids.left_buffer != 0 {
         gl.StencilFunc(gl.ALWAYS, 1, 1)
-        gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.Uint(ids.left_buffer))
+        gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, ids.left_buffer)
         do_color(R, G, B, alphaMult(A, room.far_left.wall_alpha))
         gl.DrawElements(gl.TRIANGLES, ids.left_count, gl.UNSIGNED_SHORT, nil)
       }
       if ids.right_buffer != 0 {
         gl.StencilFunc(gl.ALWAYS, 1, 1)
-        gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.Uint(ids.right_buffer))
+        gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, ids.right_buffer)
         do_color(R, G, B, alphaMult(A, room.far_right.wall_alpha))
         gl.DrawElements(gl.TRIANGLES, ids.right_count, gl.UNSIGNED_SHORT, nil)
       }
@@ -676,7 +676,7 @@ func (room *Room) setupGlStuff() {
   gl.GenBuffers(1, (*gl.Uint)(&room.floor_buffer))
   gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.Uint(room.floor_buffer))
   gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, gl.Sizeiptr(int(unsafe.Sizeof(is[0]))*len(is)), gl.Pointer(&is[0]), gl.STATIC_DRAW)
-  room.floor_count = len(is)
+  room.floor_count = gl.Int(len(is))
 }
 
 func (room *roomDef) Dims() (dx, dy int) {

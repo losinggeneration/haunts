@@ -29,13 +29,13 @@ func (wt *WallTexture) Load() {
 }
 
 type wallTextureGlIds struct {
-  vbuffer uint32
+  vbuffer gl.Uint
 
-  left_buffer  uint32
+  left_buffer  gl.Uint
   left_count   gl.Sizei
-  right_buffer uint32
+  right_buffer gl.Uint
   right_count  gl.Sizei
-  floor_buffer uint32
+  floor_buffer gl.Uint
   floor_count  gl.Sizei
 }
 
