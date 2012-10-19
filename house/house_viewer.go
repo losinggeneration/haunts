@@ -121,7 +121,7 @@ func (hv *HouseViewer) AddDrawable(d Drawable) {
   hv.drawables = append(hv.drawables, d)
 }
 func (hv *HouseViewer) RemoveDrawable(d Drawable) {
-  algorithm.Choose2(&hv.drawables, func(t Drawable) bool {
+  algorithm.Choose(&hv.drawables, func(t Drawable) bool {
     return t != d
   })
 }
@@ -133,7 +133,7 @@ func (hv *HouseViewer) AddFloorDrawable(fd FloorDrawer) {
   hv.floor_drawers = append(hv.floor_drawers, fd)
 }
 func (hv *HouseViewer) RemoveFloorDrawable(fd FloorDrawer) {
-  algorithm.Choose2(&hv.floor_drawers, func(t FloorDrawer) bool {
+  algorithm.Choose(&hv.floor_drawers, func(t FloorDrawer) bool {
     return t != fd
   })
 }

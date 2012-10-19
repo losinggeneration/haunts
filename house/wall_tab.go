@@ -70,7 +70,7 @@ func (w *WallPanel) onEscape() {
     if w.prev_wall_texture != nil {
       *w.wall_texture = *w.prev_wall_texture
     } else {
-      algorithm.Choose2(&w.room.WallTextures, func(wt *WallTexture) bool {
+      algorithm.Choose(&w.room.WallTextures, func(wt *WallTexture) bool {
         return wt != w.wall_texture
       })
     }
@@ -85,7 +85,7 @@ func (w *WallPanel) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   }
 
   if found, event := group.FindEvent(gin.DeleteOrBackspace); found && event.Type == gin.Press {
-    algorithm.Choose2(&w.room.WallTextures, func(wt *WallTexture) bool {
+    algorithm.Choose(&w.room.WallTextures, func(wt *WallTexture) bool {
       return wt != w.wall_texture
     })
     w.wall_texture = nil

@@ -61,10 +61,10 @@ func (sp *SpawnPoint) Render(pos mathgl.Vec2, width float32) {
   gl.Disable(gl.TEXTURE_2D)
   gl.Color4d(1, 1, 1, 0.1)
   gl.Begin(gl.QUADS)
-  gl.Vertex2f(pos.X-width/2, pos.Y)
-  gl.Vertex2f(pos.X-width/2, pos.Y+width)
-  gl.Vertex2f(pos.X+width/2, pos.Y+width)
-  gl.Vertex2f(pos.X+width/2, pos.Y)
+  gl.Vertex2f(gl.Float(pos.X-width/2), gl.Float(pos.Y))
+  gl.Vertex2f(gl.Float(pos.X-width/2), gl.Float(pos.Y+width))
+  gl.Vertex2f(gl.Float(pos.X+width/2), gl.Float(pos.Y+width))
+  gl.Vertex2f(gl.Float(pos.X+width/2), gl.Float(pos.Y))
   gl.End()
 }
 func (sp *SpawnPoint) RenderOnFloor() {
@@ -74,7 +74,7 @@ func (sp *SpawnPoint) RenderOnFloor() {
   }
 
   var rgba [4]float64
-  gl.GetDoublev(gl.CURRENT_COLOR, &rgba[0])
+  gl.GetDoublev(gl.CURRENT_COLOR, (*gl.Double)(&rgba[0]))
   gl.PushAttrib(gl.CURRENT_BIT)
   gl.Disable(gl.TEXTURE_2D)
 
@@ -90,7 +90,7 @@ func (sp *SpawnPoint) RenderOnFloor() {
   h := fnv.New32()
   h.Write([]byte(prefix))
   hs := h.Sum32()
-  gl.Color4ub(byte(hs%256), byte((hs/256)%256), byte((hs/(256*256))%256), byte(255*rgba[3]))
+  gl.Color4ub(gl.Ubyte(hs%256), gl.Ubyte((hs/256)%256), gl.Ubyte((hs/(256*256))%256), gl.Ubyte(255*rgba[3]))
 
   base.EnableShader("box")
   base.SetUniformF("box", "dx", float32(sp.Dx))

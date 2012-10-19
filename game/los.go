@@ -91,13 +91,13 @@ func (wp *waypoint) RenderOnFloor() {
   base.SetUniformF("waypoint", "time", t)
   gl.Begin(gl.QUADS)
   gl.TexCoord2i(0, 1)
-  gl.Vertex2i(int32(wp.X-wp.Radius), int32(wp.Y-wp.Radius))
+  gl.Vertex2i(gl.Int(wp.X-wp.Radius), gl.Int(wp.Y-wp.Radius))
   gl.TexCoord2i(0, 0)
-  gl.Vertex2i(int32(wp.X-wp.Radius), int32(wp.Y+wp.Radius))
+  gl.Vertex2i(gl.Int(wp.X-wp.Radius), gl.Int(wp.Y+wp.Radius))
   gl.TexCoord2i(1, 0)
-  gl.Vertex2i(int32(wp.X+wp.Radius), int32(wp.Y+wp.Radius))
+  gl.Vertex2i(gl.Int(wp.X+wp.Radius), gl.Int(wp.Y+wp.Radius))
   gl.TexCoord2i(1, 1)
-  gl.Vertex2i(int32(wp.X+wp.Radius), int32(wp.Y-wp.Radius))
+  gl.Vertex2i(gl.Int(wp.X+wp.Radius), gl.Int(wp.Y-wp.Radius))
   gl.End()
 
   base.EnableShader("")
@@ -470,7 +470,7 @@ func (g *Game) OnRound(do_scripts bool) {
       g.viewer.RemoveDrawable(g.Ents[i])
     }
   }
-  algorithm.Choose2(&g.Ents, func(ent *Entity) bool {
+  algorithm.Choose(&g.Ents, func(ent *Entity) bool {
     return ent.Stats == nil || ent.Stats.HpCur() > 0
   })
 

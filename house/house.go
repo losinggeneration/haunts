@@ -36,13 +36,13 @@ type Room struct {
   // opengl stuff
   // Vertex buffer storing the vertices of the room as well as the texture
   // coordinates for the los texture.
-  vbuffer uint32
+  vbuffer gl.Uint
 
   // index buffers
-  left_buffer  uint32
-  right_buffer uint32
-  floor_buffer uint32
-  floor_count  int
+  left_buffer  gl.Uint
+  right_buffer gl.Uint
+  floor_buffer gl.Uint
+  floor_count  gl.Int
 
   // we don't want to redo all of the vertex and index buffers unless we
   // need to, so we keep track of the position and size of the room when they
@@ -164,9 +164,9 @@ type doorState struct {
 }
 
 type doorGlIds struct {
-  vbuffer uint32
+  vbuffer gl.Uint
 
-  floor_buffer uint32
+  floor_buffer gl.Uint
   floor_count  gl.Sizei
 }
 
@@ -485,10 +485,10 @@ func (f *Floor) canAddDoor(target *Room, door *Door) bool {
 
 func (f *Floor) removeInvalidDoors() {
   for _, room := range f.Rooms {
-    room.Doors = algorithm.Choose(room.Doors, func(a interface{}) bool {
+    algorithm.Choose(room.Doors, func(a interface{}) bool {
       _, other_door := f.FindMatchingDoor(room, a.(*Door))
       return other_door != nil && !other_door.temporary
-    }).([]*Door)
+    })
   }
 }
 
@@ -796,7 +796,7 @@ func (hdt *houseDataTab) onEscape() {
     *hdt.temp_room = *hdt.prev_room
     hdt.prev_room = nil
   } else {
-    algorithm.Choose2(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
+    algorithm.Choose(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
       return r != hdt.temp_room
     })
   }
@@ -819,10 +819,10 @@ func (hdt *houseDataTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
       for i := range hdt.temp_spawns {
         spawns[hdt.temp_spawns[i]] = true
       }
-      algorithm.Choose2(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
+      algorithm.Choose(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
         return !spawns[s]
       })
-      algorithm.Choose2(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
+      algorithm.Choose(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
         return r != hdt.temp_room
       })
       hdt.temp_room = nil
@@ -930,7 +930,7 @@ func (hdt *houseDoorTab) Think(ui *gui.Gui, t int64) {
 func (hdt *houseDoorTab) onEscape() {
   if hdt.temp_door != nil {
     if hdt.temp_room != nil {
-      algorithm.Choose2(&hdt.temp_room.Doors, func(d *Door) bool {
+      algorithm.Choose(&hdt.temp_room.Doors, func(d *Door) bool {
         return d != hdt.temp_door
       })
     }
@@ -955,7 +955,7 @@ func (hdt *houseDoorTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   }
 
   if found, event := group.FindEvent(gin.DeleteOrBackspace); found && event.Type == gin.Press {
-    algorithm.Choose2(&hdt.temp_room.Doors, func(d *Door) bool {
+    algorithm.Choose(&hdt.temp_room.Doors, func(d *Door) bool {
       return d != hdt.temp_door
     })
     hdt.temp_room = nil
@@ -973,7 +973,7 @@ func (hdt *houseDoorTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   if cursor != nil && hdt.temp_door != nil {
     room := hdt.viewer.FindClosestDoorPos(hdt.temp_door, bx, by)
     if room != hdt.temp_room {
-      algorithm.Choose2(&hdt.temp_room.Doors, func(d *Door) bool {
+      algorithm.Choose(&hdt.temp_room.Doors, func(d *Door) bool {
         return d != hdt.temp_door
       })
       hdt.temp_room = room
@@ -1007,7 +1007,7 @@ func (hdt *houseDoorTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
         hdt.temp_door.temporary = true
         room, door := hdt.house.Floors[0].FindMatchingDoor(hdt.temp_room, hdt.temp_door)
         if room != nil {
-          algorithm.Choose2(&room.Doors, func(d *Door) bool {
+          algorithm.Choose(&room.Doors, func(d *Door) bool {
             return d != door
           })
         }
@@ -1080,7 +1080,7 @@ func (hdt *houseRelicsTab) onEscape() {
       *hdt.temp_relic = *hdt.prev_relic
       hdt.prev_relic = nil
     } else {
-      algorithm.Choose2(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
+      algorithm.Choose(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
         return s != hdt.temp_relic
       })
     }
@@ -1167,7 +1167,7 @@ func (hdt *houseRelicsTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   }
 
   if found, event := group.FindEvent(gin.DeleteOrBackspace); found && event.Type == gin.Press {
-    algorithm.Choose2(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
+    algorithm.Choose(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
       return s != hdt.temp_relic
     })
     hdt.temp_relic = nil

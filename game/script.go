@@ -64,50 +64,50 @@ func startGameScript(gp *GamePanel, path string, player *Player, data map[string
   gp.script.L.SetExecutionLimit(25000)
   gp.script.L.NewTable()
   LuaPushSmartFunctionTable(gp.script.L, FunctionTable{
-    "ChooserFromFile":                   func() { gp.script.L.PushGoFunctionAsCFunction(chooserFromFile(gp)) },
-    "StartScript":                       func() { gp.script.L.PushGoFunctionAsCFunction(startScript(gp, player)) },
-    "GameOnRound":                       func() { gp.script.L.PushGoFunctionAsCFunction(doGameOnRound(gp)) },
-    "SaveGameState":                     func() { gp.script.L.PushGoFunctionAsCFunction(saveGameState(gp)) },
-    "LoadGameState":                     func() { gp.script.L.PushGoFunctionAsCFunction(loadGameState(gp)) },
-    "DoExec":                            func() { gp.script.L.PushGoFunctionAsCFunction(doExec(gp)) },
-    "SelectEnt":                         func() { gp.script.L.PushGoFunctionAsCFunction(selectEnt(gp)) },
-    "FocusPos":                          func() { gp.script.L.PushGoFunctionAsCFunction(focusPos(gp)) },
-    "FocusZoom":                         func() { gp.script.L.PushGoFunctionAsCFunction(focusZoom(gp)) },
-    "SelectHouse":                       func() { gp.script.L.PushGoFunctionAsCFunction(selectHouse(gp)) },
-    "LoadHouse":                         func() { gp.script.L.PushGoFunctionAsCFunction(loadHouse(gp)) },
-    "SaveStore":                         func() { gp.script.L.PushGoFunctionAsCFunction(saveStore(gp, player)) },
-    "ShowMainBar":                       func() { gp.script.L.PushGoFunctionAsCFunction(showMainBar(gp, player)) },
-    "SpawnEntityAtPosition":             func() { gp.script.L.PushGoFunctionAsCFunction(spawnEntityAtPosition(gp)) },
-    "GetSpawnPointsMatching":            func() { gp.script.L.PushGoFunctionAsCFunction(getSpawnPointsMatching(gp)) },
-    "SpawnEntitySomewhereInSpawnPoints": func() { gp.script.L.PushGoFunctionAsCFunction(spawnEntitySomewhereInSpawnPoints(gp)) },
-    "IsSpawnPointInLos":                 func() { gp.script.L.PushGoFunctionAsCFunction(isSpawnPointInLos(gp)) },
-    "PlaceEntities":                     func() { gp.script.L.PushGoFunctionAsCFunction(placeEntities(gp)) },
-    "RoomAtPos":                         func() { gp.script.L.PushGoFunctionAsCFunction(roomAtPos(gp)) },
-    "SetLosMode":                        func() { gp.script.L.PushGoFunctionAsCFunction(setLosMode(gp)) },
-    "GetAllEnts":                        func() { gp.script.L.PushGoFunctionAsCFunction(getAllEnts(gp)) },
-    "DialogBox":                         func() { gp.script.L.PushGoFunctionAsCFunction(dialogBox(gp)) },
-    "PickFromN":                         func() { gp.script.L.PushGoFunctionAsCFunction(pickFromN(gp)) },
-    "SetGear":                           func() { gp.script.L.PushGoFunctionAsCFunction(setGear(gp)) },
-    "BindAi":                            func() { gp.script.L.PushGoFunctionAsCFunction(bindAi(gp)) },
-    "SetVisibility":                     func() { gp.script.L.PushGoFunctionAsCFunction(setVisibility(gp)) },
-    "EndPlayerInteraction":              func() { gp.script.L.PushGoFunctionAsCFunction(endPlayerInteraction(gp)) },
-    "GetLos":                            func() { gp.script.L.PushGoFunctionAsCFunction(getLos(gp)) },
-    "SetVisibleSpawnPoints":             func() { gp.script.L.PushGoFunctionAsCFunction(setVisibleSpawnPoints(gp)) },
-    "SetCondition":                      func() { gp.script.L.PushGoFunctionAsCFunction(setCondition(gp)) },
-    "SetPosition":                       func() { gp.script.L.PushGoFunctionAsCFunction(setPosition(gp)) },
-    "SetHp":                             func() { gp.script.L.PushGoFunctionAsCFunction(setHp(gp)) },
-    "SetAp":                             func() { gp.script.L.PushGoFunctionAsCFunction(setAp(gp)) },
-    "RemoveEnt":                         func() { gp.script.L.PushGoFunctionAsCFunction(removeEnt(gp)) },
-    "PlayAnimations":                    func() { gp.script.L.PushGoFunctionAsCFunction(playAnimations(gp)) },
-    "PlayMusic":                         func() { gp.script.L.PushGoFunctionAsCFunction(playMusic(gp)) },
-    "StopMusic":                         func() { gp.script.L.PushGoFunctionAsCFunction(stopMusic(gp)) },
-    "SetMusicParam":                     func() { gp.script.L.PushGoFunctionAsCFunction(setMusicParam(gp)) },
-    "PlaySound":                         func() { gp.script.L.PushGoFunctionAsCFunction(playSound(gp)) },
-    "SetWaypoint":                       func() { gp.script.L.PushGoFunctionAsCFunction(setWaypoint(gp)) },
-    "RemoveWaypoint":                    func() { gp.script.L.PushGoFunctionAsCFunction(removeWaypoint(gp)) },
-    "Rand":                              func() { gp.script.L.PushGoFunctionAsCFunction(randFunc(gp)) },
-    "Sleep":                             func() { gp.script.L.PushGoFunctionAsCFunction(sleepFunc(gp)) },
-    "EndGame":                           func() { gp.script.L.PushGoFunctionAsCFunction(endGameFunc(gp)) },
+    "ChooserFromFile":                   func() { gp.script.L.PushGoFunction(chooserFromFile(gp)) },
+    "StartScript":                       func() { gp.script.L.PushGoFunction(startScript(gp, player)) },
+    "GameOnRound":                       func() { gp.script.L.PushGoFunction(doGameOnRound(gp)) },
+    "SaveGameState":                     func() { gp.script.L.PushGoFunction(saveGameState(gp)) },
+    "LoadGameState":                     func() { gp.script.L.PushGoFunction(loadGameState(gp)) },
+    "DoExec":                            func() { gp.script.L.PushGoFunction(doExec(gp)) },
+    "SelectEnt":                         func() { gp.script.L.PushGoFunction(selectEnt(gp)) },
+    "FocusPos":                          func() { gp.script.L.PushGoFunction(focusPos(gp)) },
+    "FocusZoom":                         func() { gp.script.L.PushGoFunction(focusZoom(gp)) },
+    "SelectHouse":                       func() { gp.script.L.PushGoFunction(selectHouse(gp)) },
+    "LoadHouse":                         func() { gp.script.L.PushGoFunction(loadHouse(gp)) },
+    "SaveStore":                         func() { gp.script.L.PushGoFunction(saveStore(gp, player)) },
+    "ShowMainBar":                       func() { gp.script.L.PushGoFunction(showMainBar(gp, player)) },
+    "SpawnEntityAtPosition":             func() { gp.script.L.PushGoFunction(spawnEntityAtPosition(gp)) },
+    "GetSpawnPointsMatching":            func() { gp.script.L.PushGoFunction(getSpawnPointsMatching(gp)) },
+    "SpawnEntitySomewhereInSpawnPoints": func() { gp.script.L.PushGoFunction(spawnEntitySomewhereInSpawnPoints(gp)) },
+    "IsSpawnPointInLos":                 func() { gp.script.L.PushGoFunction(isSpawnPointInLos(gp)) },
+    "PlaceEntities":                     func() { gp.script.L.PushGoFunction(placeEntities(gp)) },
+    "RoomAtPos":                         func() { gp.script.L.PushGoFunction(roomAtPos(gp)) },
+    "SetLosMode":                        func() { gp.script.L.PushGoFunction(setLosMode(gp)) },
+    "GetAllEnts":                        func() { gp.script.L.PushGoFunction(getAllEnts(gp)) },
+    "DialogBox":                         func() { gp.script.L.PushGoFunction(dialogBox(gp)) },
+    "PickFromN":                         func() { gp.script.L.PushGoFunction(pickFromN(gp)) },
+    "SetGear":                           func() { gp.script.L.PushGoFunction(setGear(gp)) },
+    "BindAi":                            func() { gp.script.L.PushGoFunction(bindAi(gp)) },
+    "SetVisibility":                     func() { gp.script.L.PushGoFunction(setVisibility(gp)) },
+    "EndPlayerInteraction":              func() { gp.script.L.PushGoFunction(endPlayerInteraction(gp)) },
+    "GetLos":                            func() { gp.script.L.PushGoFunction(getLos(gp)) },
+    "SetVisibleSpawnPoints":             func() { gp.script.L.PushGoFunction(setVisibleSpawnPoints(gp)) },
+    "SetCondition":                      func() { gp.script.L.PushGoFunction(setCondition(gp)) },
+    "SetPosition":                       func() { gp.script.L.PushGoFunction(setPosition(gp)) },
+    "SetHp":                             func() { gp.script.L.PushGoFunction(setHp(gp)) },
+    "SetAp":                             func() { gp.script.L.PushGoFunction(setAp(gp)) },
+    "RemoveEnt":                         func() { gp.script.L.PushGoFunction(removeEnt(gp)) },
+    "PlayAnimations":                    func() { gp.script.L.PushGoFunction(playAnimations(gp)) },
+    "PlayMusic":                         func() { gp.script.L.PushGoFunction(playMusic(gp)) },
+    "StopMusic":                         func() { gp.script.L.PushGoFunction(stopMusic(gp)) },
+    "SetMusicParam":                     func() { gp.script.L.PushGoFunction(setMusicParam(gp)) },
+    "PlaySound":                         func() { gp.script.L.PushGoFunction(playSound(gp)) },
+    "SetWaypoint":                       func() { gp.script.L.PushGoFunction(setWaypoint(gp)) },
+    "RemoveWaypoint":                    func() { gp.script.L.PushGoFunction(removeWaypoint(gp)) },
+    "Rand":                              func() { gp.script.L.PushGoFunction(randFunc(gp)) },
+    "Sleep":                             func() { gp.script.L.PushGoFunction(sleepFunc(gp)) },
+    "EndGame":                           func() { gp.script.L.PushGoFunction(endGameFunc(gp)) },
   })
   gp.script.L.SetMetaTable(-2)
   gp.script.L.SetGlobal("Script")
@@ -115,17 +115,17 @@ func startGameScript(gp *GamePanel, path string, player *Player, data map[string
   gp.script.L.NewTable()
   LuaPushSmartFunctionTable(gp.script.L, FunctionTable{
     "Active": func() {
-      gp.script.L.PushGoFunctionAsCFunction(
+      gp.script.L.PushGoFunction(
         func(L *lua.State) int {
           L.PushBoolean(game_key != "")
           return 1
         })
     },
-    "Side":                func() { gp.script.L.PushGoFunctionAsCFunction(netSideFunc(gp)) },
-    "UpdateState":         func() { gp.script.L.PushGoFunctionAsCFunction(updateStateFunc(gp)) },
-    "UpdateExecs":         func() { gp.script.L.PushGoFunctionAsCFunction(updateExecsFunc(gp)) },
-    "Wait":                func() { gp.script.L.PushGoFunctionAsCFunction(netWaitFunc(gp)) },
-    "LatestStateAndExecs": func() { gp.script.L.PushGoFunctionAsCFunction(netLatestStateAndExecsFunc(gp)) },
+    "Side":                func() { gp.script.L.PushGoFunction(netSideFunc(gp)) },
+    "UpdateState":         func() { gp.script.L.PushGoFunction(updateStateFunc(gp)) },
+    "UpdateExecs":         func() { gp.script.L.PushGoFunction(updateExecsFunc(gp)) },
+    "Wait":                func() { gp.script.L.PushGoFunction(netWaitFunc(gp)) },
+    "LatestStateAndExecs": func() { gp.script.L.PushGoFunction(netLatestStateAndExecsFunc(gp)) },
   })
   gp.script.L.SetMetaTable(-2)
   gp.script.L.SetGlobal("Net")
@@ -1065,7 +1065,7 @@ type iconWithText struct {
 }
 
 func (c *iconWithText) Draw(hovered, selected, selectable bool, region gui.Region) {
-  var f float64
+  var f gl.Double
   switch {
   case selected:
     f = 1.0
@@ -1084,10 +1084,10 @@ func (c *iconWithText) Draw(hovered, selected, selectable bool, region gui.Regio
     }
     gl.Disable(gl.TEXTURE_2D)
     gl.Begin(gl.LINES)
-    x := int32(region.X + 1)
-    y := int32(region.Y + 1)
-    x2 := int32(region.X + region.Dx - 1)
-    y2 := int32(region.Y + region.Dy - 1)
+    x := gl.Int(region.X + 1)
+    y := gl.Int(region.Y + 1)
+    x2 := gl.Int(region.X + region.Dx - 1)
+    y2 := gl.Int(region.Y + region.Dy - 1)
 
     gl.Vertex2i(x, y)
     gl.Vertex2i(x, y2)
@@ -1592,7 +1592,7 @@ func setWaypoint(gp *GamePanel) lua.GoFunction {
     }
     wp.Name = L.ToString(-4)
     // Remove any existing waypoint by the same name
-    algorithm.Choose2(&gp.game.Waypoints, func(w waypoint) bool {
+    algorithm.Choose(&gp.game.Waypoints, func(w waypoint) bool {
       return w.Name != wp.Name
     })
     px, py := LuaToPoint(L, -2)
