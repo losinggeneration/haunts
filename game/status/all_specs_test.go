@@ -1,14 +1,14 @@
 package status_test
 
 import (
-  "testing"
-  "github.com/orfjackal/gospec/src/gospec"
-  "github.com/runningwild/haunts/game/status"
+	"github.com/orfjackal/gospec/src/gospec"
+	"github.com/runningwild/haunts/game/status"
+	"testing"
 )
 
 func TestAllSpecs(t *testing.T) {
-  status.RegisterAllConditions()
-  r := gospec.NewRunner()
-  r.AddSpec(ConditionsSpec)
-  gospec.MainGoTest(r, t)
+	status.RegisterAllConditions()
+	r := gospec.NewRunner()
+	r.AddSpec(ConditionsSpec)
+	gospec.MainGoTest(r, t)
 }
