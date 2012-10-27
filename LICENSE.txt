@@ -1,0 +1,32 @@
+Haunts - The Manse Macabre (tm) 
+(c) Mob Rules Games, Inc. and contributors.
+
+== Original Code and Media License ==
+
+The original and contributed source code (including Go code and Lua scripts) 
+for this software is licensed for anyone to use under the 
+Gnu Affero General Public License v3. 
+AGPL.txt contains the full license text.
+
+The original and contributed media (images, audio, animation, and other JSON) 
+is licensed for anyone to use under the 
+Creative Commons Non-Commercial Share-Alike 3.0 license. 
+http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US for full text.
+
+To obtain a commercial license for any of the media files, email 
+contact {at} mobrulesgames.com
+
+
+== 3rd Party Code Licenses ==
+
+Included software licensed from other sources is licensed under the terms 
+indicated in that software.
+
+== Contributing ==
+
+Mob Rules Games welcomes the involvement of the community. To preserve the
+integrity of the project we require any submissions of code or media to
+be preceded by a Contribution License Agreement. This is a simple form
+you can fill out online. For more information please see
+http://www.mobrulesgames.com/CLA 
+
