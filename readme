@@ -1,0 +1,38 @@
+NOTE: The repository contains everything you need *EXCEPT* sound.  To get the sound you should go to http://markleford.com/dock/haunts/build/ and grab the *.fsb file and add it to data/sound/.
+
+NOTE: All of the repositories that this project references are open-source.  Some might have made backward-incompatible changes since I last pulled them.  I have already made some such changes to glop.  Additionally I have cloned some repositories and have my own version of them (such as chsc's gogl), if you try to use the author's verisons you will need to make a lot of changes in haunts.
+
+- base/
+Useful things that you might want anywhere.
+  - Logging: you can do base.Log().Printf("Foo: %d", foo) to get that line (with line number and file) to show up in the log
+  - Console: The console shows the last several lines of the log file as it is being generated.  Press ctrl-c on windows, or cmd-c on osx, to toggle the console.
+  - Registry: An easy way to load directories full of json files into the appropriate structures and keep them in an easy to access registry.
+  - Bindings: Some bindings are different on osx and windows, these are listed in their respective bindings files.
+  - Shaders: Easy way to load shaders and set appropriate variables for those shaders.
+
+- game/
+Most gameplay and ui stuff is in here.  It's big and gross.
+  - Actions: The Action interface describes a kind of action that a player can do.  Each action type has an implementation in game/actions/.
+  - Ais: The Ai interface describes an ai that can control either a player or an entity.  Implementations and the Ai API is in game/ai/.
+  - Ui: Most ui is done in the files that match game/ui_.*.  They are ugly, because the ui api in glop is ugly.  That is something that just sucks, there isn't a good way around it.
+
+  - game/status
+  Contains everything for keeping track of an entity's stats, along with any modifiers to those stats.  This is in a separate package to make it difficult to modify an entity's stats without going through the proper process.
+
+- house/
+Contains all of the code for rendering rooms and houses, as well as all of the logic for the editor.
+  - Los_textures: This describes what a player can see.  This is represented as a greyscale image that is used to render rooms such that certain parts are dark or light depending on what a player can see.  The relevant fragment shader that handles this is data/shaders/fragment/los.fs.
+
+- mrgnet/
+All of the code for communicating with the server.
+
+- sound/
+All of the code for playing sound and music.
+
+- texture/
+A fairly simple texture manager.  Textures can be loaded by referring to their path (relative to data/).  The are loaded asynchronously, they are loaded incrementally so as to not flood the gpu with requests in a single frame.  If you refer to a texture that has not been loaded yet you will get a single pixel transparent texture until it is loaded.  A scavenger routine will collect textures that have not been referenced in a few minutes and unload them from the gpu to prevent texture memory from growing unboundedly.
+  -Greyscale images are handled specially.  If a texture is loaded that is strictly greyscale it will be loaded into the gpu as a greyscale image to save on texture and gpu bandwidth.
+
+
+
+
