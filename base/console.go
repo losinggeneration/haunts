@@ -1,10 +1,10 @@
 package base
 
 import (
-  "github.com/runningwild/glop/gin"
-  "github.com/runningwild/glop/gui"
+  "github.com/MobRulesGames/glop/gin"
+  "github.com/MobRulesGames/glop/gui"
   "bufio"
-  "github.com/runningwild/opengl/gl"
+  "github.com/MobRulesGames/opengl/gl"
   "strings"
   "unicode"
 )

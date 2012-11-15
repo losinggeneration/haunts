@@ -5,7 +5,7 @@ import (
   "encoding/gob"
   "encoding/json"
   "fmt"
-  "github.com/runningwild/glop/util/algorithm"
+  "github.com/MobRulesGames/glop/util/algorithm"
 )
 
 type Kind string

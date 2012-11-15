@@ -1,12 +1,12 @@
 package texture
 
 import (
-  "github.com/runningwild/glop/render"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/mathgl"
-  "github.com/runningwild/memory"
-  "github.com/runningwild/opengl/gl"
-  "github.com/runningwild/opengl/glu"
+  "github.com/MobRulesGames/glop/render"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/mathgl"
+  "github.com/MobRulesGames/memory"
+  "github.com/MobRulesGames/opengl/gl"
+  "github.com/MobRulesGames/opengl/glu"
   "image"
   "image/draw"
   _ "image/jpeg"

@@ -5,8 +5,8 @@ import (
   "unsafe"
   "path/filepath"
   "io/ioutil"
-  "github.com/runningwild/glop/render"
-  gl "github.com/chsc/gogl/gl21"
+  "github.com/MobRulesGames/glop/render"
+  gl "github.com/MobRulesGames/gogl/gl21"
 )
 
 type Shader struct {

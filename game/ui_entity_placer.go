@@ -3,14 +3,14 @@ package game
 import (
   "errors"
   "fmt"
-  gl "github.com/chsc/gogl/gl21"
-  "github.com/runningwild/glop/gin"
-  "github.com/runningwild/glop/gui"
-  "github.com/runningwild/glop/util/algorithm"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/haunts/house"
-  "github.com/runningwild/haunts/sound"
-  "github.com/runningwild/haunts/texture"
+  gl "github.com/MobRulesGames/gogl/gl21"
+  "github.com/MobRulesGames/glop/gin"
+  "github.com/MobRulesGames/glop/gui"
+  "github.com/MobRulesGames/glop/util/algorithm"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/house"
+  "github.com/MobRulesGames/haunts/sound"
+  "github.com/MobRulesGames/haunts/texture"
   "path/filepath"
 )
 

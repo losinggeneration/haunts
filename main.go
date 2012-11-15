@@ -8,24 +8,24 @@ import (
   "runtime/debug"
   "runtime/pprof"
   "math/rand"
-  gl "github.com/chsc/gogl/gl21"
-  "github.com/runningwild/glop/gin"
-  "github.com/runningwild/glop/gos"
-  "github.com/runningwild/glop/gui"
-  "github.com/runningwild/memory"
-  "github.com/runningwild/glop/render"
-  "github.com/runningwild/glop/system"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/haunts/game"
-  "github.com/runningwild/haunts/sound"
-  "github.com/runningwild/haunts/house"
+  gl "github.com/MobRulesGames/gogl/gl21"
+  "github.com/MobRulesGames/glop/gin"
+  "github.com/MobRulesGames/glop/gos"
+  "github.com/MobRulesGames/glop/gui"
+  "github.com/MobRulesGames/memory"
+  "github.com/MobRulesGames/glop/render"
+  "github.com/MobRulesGames/glop/system"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/game"
+  "github.com/MobRulesGames/haunts/sound"
+  "github.com/MobRulesGames/haunts/house"
 
   // Need to pull in all of the actions we define here and not in
   // haunts/game because haunts/game/actions depends on it
-  _ "github.com/runningwild/haunts/game/actions"
-  _ "github.com/runningwild/haunts/game/ai"
+  _ "github.com/MobRulesGames/haunts/game/actions"
+  _ "github.com/MobRulesGames/haunts/game/ai"
 
-  "github.com/runningwild/haunts/game/status"
+  "github.com/MobRulesGames/haunts/game/status"
 )
 
 var (

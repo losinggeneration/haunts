@@ -4,11 +4,11 @@ import (
   "fmt"
   "bytes"
   "encoding/gob"
-  "github.com/runningwild/glop/gui"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/haunts/texture"
-  "github.com/runningwild/haunts/house"
-  lua "github.com/xenith-studios/golua"
+  "github.com/MobRulesGames/glop/gui"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/texture"
+  "github.com/MobRulesGames/haunts/house"
+  lua "github.com/MobRulesGames/golua"
 )
 
 var action_map map[string]func() Action

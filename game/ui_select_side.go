@@ -1,10 +1,10 @@
 package game
 
 // import (
-//   "github.com/runningwild/glop/gin"
-//   "github.com/runningwild/glop/gui"
-//   "github.com/runningwild/haunts/house"
-//   "github.com/runningwild/haunts/base"
+//   "github.com/MobRulesGames/glop/gin"
+//   "github.com/MobRulesGames/glop/gui"
+//   "github.com/MobRulesGames/haunts/house"
+//   "github.com/MobRulesGames/haunts/base"
 //   "path/filepath"
 // )
 

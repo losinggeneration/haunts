@@ -1,8 +1,8 @@
 package game
 
 import (
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/haunts/texture"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/texture"
 )
 
 type gearDef struct {

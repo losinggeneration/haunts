@@ -3,11 +3,11 @@ package game
 import (
   "path/filepath"
   "time"
-  "github.com/runningwild/glop/gin"
-  "github.com/runningwild/glop/gui"
-  "github.com/runningwild/haunts/texture"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/opengl/gl"
+  "github.com/MobRulesGames/glop/gin"
+  "github.com/MobRulesGames/glop/gui"
+  "github.com/MobRulesGames/haunts/texture"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/opengl/gl"
 )
 
 var Restart func()

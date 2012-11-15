@@ -10,9 +10,9 @@ import (
   "bytes"
   "hash/fnv"
   "path/filepath"
-  "github.com/runningwild/haunts/base"
+  "github.com/MobRulesGames/haunts/base"
   "encoding/gob"
-  lua "github.com/xenith-studios/golua"
+  lua "github.com/MobRulesGames/golua"
 )
 
 type Player struct {

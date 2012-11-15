@@ -1,11 +1,11 @@
 package hui // haunts ui
 
 import (
-  "github.com/runningwild/opengl/gl"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/haunts/texture"
-  "github.com/runningwild/glop/gui"
-  "github.com/runningwild/glop/gin"
+  "github.com/MobRulesGames/opengl/gl"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/texture"
+  "github.com/MobRulesGames/glop/gui"
+  "github.com/MobRulesGames/glop/gin"
   "path/filepath"
 )
 

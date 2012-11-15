@@ -3,7 +3,7 @@ package texture
 import (
   "image"
   "image/color"
-  "github.com/runningwild/memory"
+  "github.com/MobRulesGames/memory"
 )
 
 // NOTE: All of this code is basically ripped from the Go source, it's just

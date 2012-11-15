@@ -2,8 +2,8 @@ package house
 
 import (
   "runtime"
-  "github.com/runningwild/glop/render"
-  "github.com/runningwild/opengl/gl"
+  "github.com/MobRulesGames/glop/render"
+  "github.com/MobRulesGames/opengl/gl"
 )
 
 const LosMinVisibility = 32

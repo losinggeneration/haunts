@@ -4,9 +4,9 @@ import (
   "encoding/binary"
   "errors"
   "fmt"
-  "github.com/runningwild/haunts/base"
-  "github.com/runningwild/haunts/house"
-  lua "github.com/xenith-studios/golua"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/house"
+  lua "github.com/MobRulesGames/golua"
   "io"
   "sort"
 )
