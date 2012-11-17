@@ -2,6 +2,7 @@
 // to link in fmod.
 
 // +build nosound
+
 package sound
 
 import (

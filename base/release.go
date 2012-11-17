@@ -2,6 +2,7 @@
 // devel or release build.
 
 // +build release
+
 package base
 
 func IsDevel() bool { return false }
