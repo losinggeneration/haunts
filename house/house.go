@@ -188,14 +188,14 @@ func (d *Door) setupGlStuff(room *Room) {
   }
   d.state = state
   if d.threshold_glids.vbuffer != 0 {
-    gl.DeleteBuffers(1, &d.threshold_glids.vbuffer)
-    gl.DeleteBuffers(1, &d.threshold_glids.floor_buffer)
+    gl.DeleteBuffers(1, (*gl.Uint)(&d.threshold_glids.vbuffer))
+    gl.DeleteBuffers(1, (*gl.Uint)(&d.threshold_glids.floor_buffer))
     d.threshold_glids.vbuffer = 0
     d.threshold_glids.floor_buffer = 0
   }
   if d.door_glids.vbuffer != 0 {
-    gl.DeleteBuffers(1, &d.door_glids.vbuffer)
-    gl.DeleteBuffers(1, &d.door_glids.floor_buffer)
+    gl.DeleteBuffers(1, (*gl.Uint)(&d.door_glids.vbuffer))
+    gl.DeleteBuffers(1, (*gl.Uint)(&d.door_glids.floor_buffer))
     d.door_glids.vbuffer = 0
     d.door_glids.floor_buffer = 0
   }
@@ -307,21 +307,21 @@ func (d *Door) setupGlStuff(room *Room) {
       los_v: los_v2,
     })
   }
-  gl.GenBuffers(1, &d.threshold_glids.vbuffer)
-  gl.BindBuffer(gl.ARRAY_BUFFER, d.threshold_glids.vbuffer)
+  gl.GenBuffers(1, (*gl.Uint)(&d.threshold_glids.vbuffer))
+  gl.BindBuffer(gl.ARRAY_BUFFER, gl.Uint(d.threshold_glids.vbuffer))
   size := int(unsafe.Sizeof(roomVertex{}))
   gl.BufferData(gl.ARRAY_BUFFER, gl.Sizeiptr(size*len(vs)), gl.Pointer(&vs[0].x), gl.STATIC_DRAW)
 
   is := []uint16{0, 1, 2, 0, 2, 3}
-  gl.GenBuffers(1, &d.threshold_glids.floor_buffer)
-  gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, d.threshold_glids.floor_buffer)
+  gl.GenBuffers(1, (*gl.Uint)(&d.threshold_glids.floor_buffer))
+  gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.Uint(d.threshold_glids.floor_buffer))
   gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, gl.Sizeiptr(int(unsafe.Sizeof(is[0]))*len(is)), gl.Pointer(&is[0]), gl.STATIC_DRAW)
   d.threshold_glids.floor_count = 6
 
   if d.Facing == FarLeft || d.Facing == FarRight {
     is2 := []uint16{4, 5, 6, 4, 6, 7}
-    gl.GenBuffers(1, &d.door_glids.floor_buffer)
-    gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, d.door_glids.floor_buffer)
+    gl.GenBuffers(1, (*gl.Uint)(&d.door_glids.floor_buffer))
+    gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.Uint(d.door_glids.floor_buffer))
     gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, gl.Sizeiptr(int(unsafe.Sizeof(is[0]))*len(is2)), gl.Pointer(&is2[0]), gl.STATIC_DRAW)
     d.door_glids.floor_count = 6
   }
@@ -485,10 +485,10 @@ func (f *Floor) canAddDoor(target *Room, door *Door) bool {
 
 func (f *Floor) removeInvalidDoors() {
   for _, room := range f.Rooms {
-    room.Doors = algorithm.Choose(room.Doors, func(a interface{}) bool {
+    algorithm.Choose(&room.Doors, func(a interface{}) bool {
       _, other_door := f.FindMatchingDoor(room, a.(*Door))
       return other_door != nil && !other_door.temporary
-    }).([]*Door)
+    })
   }
 }
 
@@ -796,7 +796,7 @@ func (hdt *houseDataTab) onEscape() {
     *hdt.temp_room = *hdt.prev_room
     hdt.prev_room = nil
   } else {
-    algorithm.Choose2(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
+    algorithm.Choose(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
       return r != hdt.temp_room
     })
   }
@@ -819,10 +819,10 @@ func (hdt *houseDataTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
       for i := range hdt.temp_spawns {
         spawns[hdt.temp_spawns[i]] = true
       }
-      algorithm.Choose2(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
+      algorithm.Choose(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
         return !spawns[s]
       })
-      algorithm.Choose2(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
+      algorithm.Choose(&hdt.house.Floors[0].Rooms, func(r *Room) bool {
         return r != hdt.temp_room
       })
       hdt.temp_room = nil
@@ -930,7 +930,7 @@ func (hdt *houseDoorTab) Think(ui *gui.Gui, t int64) {
 func (hdt *houseDoorTab) onEscape() {
   if hdt.temp_door != nil {
     if hdt.temp_room != nil {
-      algorithm.Choose2(&hdt.temp_room.Doors, func(d *Door) bool {
+      algorithm.Choose(&hdt.temp_room.Doors, func(d *Door) bool {
         return d != hdt.temp_door
       })
     }
@@ -955,7 +955,7 @@ func (hdt *houseDoorTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   }
 
   if found, event := group.FindEvent(gin.DeleteOrBackspace); found && event.Type == gin.Press {
-    algorithm.Choose2(&hdt.temp_room.Doors, func(d *Door) bool {
+    algorithm.Choose(&hdt.temp_room.Doors, func(d *Door) bool {
       return d != hdt.temp_door
     })
     hdt.temp_room = nil
@@ -973,7 +973,7 @@ func (hdt *houseDoorTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   if cursor != nil && hdt.temp_door != nil {
     room := hdt.viewer.FindClosestDoorPos(hdt.temp_door, bx, by)
     if room != hdt.temp_room {
-      algorithm.Choose2(&hdt.temp_room.Doors, func(d *Door) bool {
+      algorithm.Choose(&hdt.temp_room.Doors, func(d *Door) bool {
         return d != hdt.temp_door
       })
       hdt.temp_room = room
@@ -1007,7 +1007,7 @@ func (hdt *houseDoorTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
         hdt.temp_door.temporary = true
         room, door := hdt.house.Floors[0].FindMatchingDoor(hdt.temp_room, hdt.temp_door)
         if room != nil {
-          algorithm.Choose2(&room.Doors, func(d *Door) bool {
+          algorithm.Choose(&room.Doors, func(d *Door) bool {
             return d != door
           })
         }
@@ -1080,7 +1080,7 @@ func (hdt *houseRelicsTab) onEscape() {
       *hdt.temp_relic = *hdt.prev_relic
       hdt.prev_relic = nil
     } else {
-      algorithm.Choose2(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
+      algorithm.Choose(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
         return s != hdt.temp_relic
       })
     }
@@ -1167,7 +1167,7 @@ func (hdt *houseRelicsTab) Respond(ui *gui.Gui, group gui.EventGroup) bool {
   }
 
   if found, event := group.FindEvent(gin.DeleteOrBackspace); found && event.Type == gin.Press {
-    algorithm.Choose2(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
+    algorithm.Choose(&hdt.house.Floors[0].Spawns, func(s *SpawnPoint) bool {
       return s != hdt.temp_relic
     })
     hdt.temp_relic = nil

@@ -372,7 +372,7 @@ func (sm *OnlineMenu) Think(g *gui.Gui, t int64) {
                 sm.layout.Error.err = resp.Err
                 base.Error().Printf("Couldn't kill game: %v", resp.Err)
               } else {
-                algorithm.Choose2(&glb.games, func(gf gameField) bool {
+                algorithm.Choose(&glb.games, func(gf gameField) bool {
                   return gf.key != req.Game_key
                 })
               }

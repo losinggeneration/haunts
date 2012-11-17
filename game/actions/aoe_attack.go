@@ -327,7 +327,7 @@ func (a *AoeAttack) getTargetsAt(g *game.Game, tx, ty int) []*game.Entity {
       targets = append(targets, ent)
     }
   }
-  algorithm.Choose2(&targets, func(e *game.Entity) bool {
+  algorithm.Choose(&targets, func(e *game.Entity) bool {
     return e.Stats != nil
   })
 

@@ -78,7 +78,7 @@ func MakeEntityPlacer(game *Game, roster_names []string, roster_costs []int, min
     ent := ep.ents[len(ep.ents)-1]
     ep.points += ep.roster[ent.Name]
     ep.ents = ep.ents[0 : len(ep.ents)-1]
-    algorithm.Choose2(&game.Ents, func(e *Entity) bool { return e != ent })
+    algorithm.Choose(&game.Ents, func(e *Entity) bool { return e != ent })
     game.viewer.RemoveDrawable(ent)
   }
 

@@ -35,7 +35,7 @@ var warned_names map[string]bool
 func EnableShader(name string) {
   prog_obj, ok := shader_progs[name]
   if ok {
-    gl.UseProgram(prog_obj)
+    gl.UseProgram(gl.Uint(prog_obj))
   } else {
     gl.UseProgram(0)
     if name != "" && !warned_names[name] {
@@ -55,8 +55,8 @@ func SetUniformI(shader, variable string, n int) {
     return
   }
   bvariable := []byte(fmt.Sprintf("%s\x00", variable))
-  loc := gl.GetUniformLocation(prog, (*gl.Char)(unsafe.Pointer(&bvariable[0])))
-  gl.Uniform1i(loc, int32(n))
+  loc := gl.GetUniformLocation(gl.Uint(prog), (*gl.Char)(unsafe.Pointer(&bvariable[0])))
+  gl.Uniform1i(loc, gl.Int(n))
 }
 
 func SetUniformF(shader, variable string, f float32) {
@@ -69,8 +69,8 @@ func SetUniformF(shader, variable string, f float32) {
     return
   }
   bvariable := []byte(fmt.Sprintf("%s\x00", variable))
-  loc := gl.GetUniformLocation(prog, (*gl.Char)(unsafe.Pointer(&bvariable[0])))
-  gl.Uniform1f(loc, f)
+  loc := gl.GetUniformLocation(gl.Uint(prog), (*gl.Char)(unsafe.Pointer(&bvariable[0])))
+  gl.Uniform1f(loc, gl.Float(f))
 }
 
 func InitShaders() {
@@ -101,13 +101,13 @@ func InitShaders() {
       // Create the vertex shader
       vertex_id, ok := vertex_shaders[shader.Vertex_path]
       if !ok {
-        vertex_id = gl.CreateShader(gl.VERTEX_SHADER)
+        vertex_id = uint32(gl.CreateShader(gl.VERTEX_SHADER))
         pointer := &vdata[0]
         length := int32(len(vdata))
-        gl.ShaderSource(vertex_id, 1, (**gl.Char)(unsafe.Pointer(&pointer)), &length)
-        gl.CompileShader(vertex_id)
+        gl.ShaderSource(gl.Uint(vertex_id), 1, (**gl.Char)(unsafe.Pointer(&pointer)), (*gl.Int)(&length))
+        gl.CompileShader(gl.Uint(vertex_id))
         var param int32
-        gl.GetShaderiv(vertex_id, gl.COMPILE_STATUS, &param)
+        gl.GetShaderiv(gl.Uint(vertex_id), gl.COMPILE_STATUS, (*gl.Int)(&param))
         if param == 0 {
           Error().Printf("Failed to compile vertex shader '%s': %v", shader.Vertex_path, param)
           continue
@@ -117,13 +117,13 @@ func InitShaders() {
       // Create the fragment shader
       fragment_id, ok := fragment_shaders[shader.Fragment_path]
       if !ok {
-        fragment_id = gl.CreateShader(gl.FRAGMENT_SHADER)
+        fragment_id = uint32(gl.CreateShader(gl.FRAGMENT_SHADER))
         pointer := &fdata[0]
         length := int32(len(fdata))
-        gl.ShaderSource(fragment_id, 1, (**gl.Char)(unsafe.Pointer(&pointer)), &length)
-        gl.CompileShader(fragment_id)
+        gl.ShaderSource(gl.Uint(fragment_id), 1, (**gl.Char)(unsafe.Pointer(&pointer)), (*gl.Int)(&length))
+        gl.CompileShader(gl.Uint(fragment_id))
         var param int32
-        gl.GetShaderiv(fragment_id, gl.COMPILE_STATUS, &param)
+        gl.GetShaderiv(gl.Uint(fragment_id), gl.COMPILE_STATUS, (*gl.Int)(&param))
         if param == 0 {
           Error().Printf("Failed to compile fragment shader '%s': %v", shader.Fragment_path, param)
           continue
@@ -132,11 +132,11 @@ func InitShaders() {
 
       // shader successfully compiled - now link
       program_id := gl.CreateProgram()
-      gl.AttachShader(program_id, vertex_id)
-      gl.AttachShader(program_id, fragment_id)
+      gl.AttachShader(program_id, gl.Uint(vertex_id))
+      gl.AttachShader(program_id, gl.Uint(fragment_id))
       gl.LinkProgram(program_id)
       var param int32
-      gl.GetProgramiv(program_id, gl.LINK_STATUS, &param)
+      gl.GetProgramiv(program_id, gl.LINK_STATUS, (*gl.Int)(&param))
       if param == 0 {
         Error().Printf("Failed to link shader '%s': %v", shader.Name, param)
         continue
@@ -144,7 +144,7 @@ func InitShaders() {
 
       vertex_shaders[shader.Vertex_path] = vertex_id
       fragment_shaders[shader.Fragment_path] = fragment_id
-      shader_progs[shader.Name] = program_id
+      shader_progs[shader.Name] = uint32(program_id)
     }
   })
 }

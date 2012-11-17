@@ -215,7 +215,7 @@ func (s *Inst) ApplyCondition(c Condition) {
 }
 
 func (s *Inst) RemoveCondition(name string) {
-  algorithm.Choose2(&s.inst.Conditions, func(c Condition) bool {
+  algorithm.Choose(&s.inst.Conditions, func(c Condition) bool {
     return c.Name() != name
   })
 }

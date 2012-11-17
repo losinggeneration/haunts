@@ -518,17 +518,17 @@ func (e *Entity) drawReticle(pos mathgl.Vec2, rgba [4]float64) {
     return
   }
   gl.PushAttrib(gl.CURRENT_BIT)
-  r := byte(rgba[0] * 255)
-  g := byte(rgba[1] * 255)
-  b := byte(rgba[2] * 255)
-  a := byte(rgba[3] * 255)
+  r := gl.Ubyte(rgba[0] * 255)
+  g := gl.Ubyte(rgba[1] * 255)
+  b := gl.Ubyte(rgba[2] * 255)
+  a := gl.Ubyte(rgba[3] * 255)
   switch {
   case e.controlled:
     gl.Color4ub(0, 0, r, a)
   case e.selected:
     gl.Color4ub(r, g, b, a)
   default:
-    gl.Color4ub(r, g, b, byte((int(a)*200)>>8))
+    gl.Color4ub(r, g, b, gl.Ubyte((int(a)*200)>>8))
   }
   glow := texture.LoadFromPath(filepath.Join(base.GetDataDir(), "ui", "glow.png"))
   dx := float64(e.last_render_width + 0.5)
@@ -542,7 +542,7 @@ func (e *Entity) Color() (r, g, b, a byte) {
 }
 func (e *Entity) Render(pos mathgl.Vec2, width float32) {
   var rgba [4]float64
-  gl.GetDoublev(gl.CURRENT_COLOR, &rgba[0])
+  gl.GetDoublev(gl.CURRENT_COLOR, (*gl.Double)(&rgba[0]))
   e.last_render_width = width
   gl.Enable(gl.TEXTURE_2D)
   e.drawReticle(pos, rgba)
@@ -552,14 +552,14 @@ func (e *Entity) Render(pos mathgl.Vec2, width float32) {
     dy := float32(dyi)
     tx, ty, tx2, ty2 := e.sprite.sp.Bind()
     gl.Begin(gl.QUADS)
-    gl.TexCoord2d(tx, -ty)
-    gl.Vertex2f(pos.X, pos.Y)
-    gl.TexCoord2d(tx, -ty2)
-    gl.Vertex2f(pos.X, pos.Y+dy*width/dx)
-    gl.TexCoord2d(tx2, -ty2)
-    gl.Vertex2f(pos.X+width, pos.Y+dy*width/dx)
-    gl.TexCoord2d(tx2, -ty)
-    gl.Vertex2f(pos.X+width, pos.Y)
+    gl.TexCoord2d(gl.Double(tx), gl.Double(-ty))
+    gl.Vertex2f(gl.Float(pos.X), gl.Float(pos.Y))
+    gl.TexCoord2d(gl.Double(tx), gl.Double(-ty2))
+    gl.Vertex2f(gl.Float(pos.X), gl.Float(pos.Y+dy*width/dx))
+    gl.TexCoord2d(gl.Double(tx2), gl.Double(-ty2))
+    gl.Vertex2f(gl.Float(pos.X+width), gl.Float(pos.Y+dy*width/dx))
+    gl.TexCoord2d(gl.Double(tx2), gl.Double(-ty))
+    gl.Vertex2f(gl.Float(pos.X+width), gl.Float(pos.Y))
     gl.End()
   }
 }
@@ -660,7 +660,7 @@ func (e *Entity) SetGear(gear_name string) bool {
     return false
   }
   if gear_name == "" {
-    algorithm.Choose2(&e.Actions, func(a Action) bool {
+    algorithm.Choose(&e.Actions, func(a Action) bool {
       return a.String() != e.ExplorerEnt.Gear.Action
     })
     if e.ExplorerEnt.Gear.Condition != "" {

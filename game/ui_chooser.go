@@ -26,14 +26,14 @@ type Option interface {
 }
 
 type colorOption struct {
-  r, g, b, a byte
+  r, g, b, a gl.Ubyte
 }
 
 func (co *colorOption) String() string {
   return fmt.Sprintf("ColorOption(%d, %d, %d, %d)", co.r, co.g, co.b, co.a)
 }
 func (co *colorOption) Think(hovered, selected, selectable bool, dt int64) {
-  var target byte
+  var target gl.Ubyte
   switch {
   case selected:
     target = 255
@@ -53,20 +53,20 @@ func (co *colorOption) Draw(x, y, dx int) {
   gl.Disable(gl.TEXTURE_2D)
   gl.Color4ub(co.r, co.g, co.b, co.a)
   gl.Begin(gl.QUADS)
-  gl.Vertex2i(int32(x), int32(y))
-  gl.Vertex2i(int32(x), int32(y+co.Height()))
-  gl.Vertex2i(int32(x+dx), int32(y+co.Height()))
-  gl.Vertex2i(int32(x+dx), int32(y))
+  gl.Vertex2i(gl.Int(x), gl.Int(y))
+  gl.Vertex2i(gl.Int(x), gl.Int(y+co.Height()))
+  gl.Vertex2i(gl.Int(x+dx), gl.Int(y+co.Height()))
+  gl.Vertex2i(gl.Int(x+dx), gl.Int(y))
   gl.End()
 }
 func (co *colorOption) DrawInfo(x, y, dx, dy int) {
   gl.Disable(gl.TEXTURE_2D)
   gl.Color4ub(co.r, co.g, co.b, co.a)
   gl.Begin(gl.QUADS)
-  gl.Vertex2i(int32(x), int32(y))
-  gl.Vertex2i(int32(x), int32(y+dy))
-  gl.Vertex2i(int32(x+dx), int32(y+dy))
-  gl.Vertex2i(int32(x+dx), int32(y))
+  gl.Vertex2i(gl.Int(x), gl.Int(y))
+  gl.Vertex2i(gl.Int(x), gl.Int(y+dy))
+  gl.Vertex2i(gl.Int(x+dx), gl.Int(y+dy))
+  gl.Vertex2i(gl.Int(x+dx), gl.Int(y))
   gl.End()
 }
 
@@ -156,7 +156,7 @@ func (ob *OptionBasic) String() string {
   return ob.Id
 }
 func (ob *OptionBasic) Draw(x, y, dx int) {
-  gl.Color4ub(255, 255, 255, ob.alpha)
+  gl.Color4ub(255, 255, 255, gl.Ubyte(ob.alpha))
   ob.Small.Data().RenderNatural(x, y)
 }
 func (ob *OptionBasic) DrawInfo(x, y, dx, dy int) {
