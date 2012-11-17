@@ -208,26 +208,21 @@ func main() {
   }()
   base.Log().Printf("Version %s", Version())
   sys.Startup()
-  err := gl.Init()
-  if err != nil {
-    panic(err)
-  }
-
   sound.Init()
   render.Init()
   render.Queue(func() {
     sys.CreateWindow(10, 10, wdx, wdy)
     sys.EnableVSync(true)
-    // err := gl.Init()
-    // if err != nil {
-    //   panic(err)
-    // }
+    err := gl.Init()
+    if err != nil {
+      panic(err)
+    }
     gl.Enable(gl.BLEND)
     gl.BlendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
   })
   base.InitShaders()
   runtime.GOMAXPROCS(8)
-  ui, err = gui.Make(gin.In(), gui.Dims{wdx, wdy}, filepath.Join(datadir, "fonts", "skia.ttf"))
+  ui, err := gui.Make(gin.In(), gui.Dims{wdx, wdy}, filepath.Join(datadir, "fonts", "skia.ttf"))
   if err != nil {
     panic(err.Error())
   }
