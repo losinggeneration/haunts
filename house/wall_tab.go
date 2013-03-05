@@ -4,7 +4,7 @@ import (
 	"github.com/runningwild/glop/gin"
 	"github.com/runningwild/glop/gui"
 	"github.com/runningwild/glop/util/algorithm"
-	"github.com/runningwild/haunts/base"
+	"../base"
 )
 
 type WallPanel struct {

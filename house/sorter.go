@@ -3,7 +3,7 @@ package house
 import (
 	"github.com/runningwild/GoLLRB/llrb"
 	"github.com/runningwild/glop/util/algorithm"
-	"github.com/runningwild/haunts/base"
+	"../base"
 	"sort"
 )
 

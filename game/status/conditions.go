@@ -2,7 +2,7 @@ package status
 
 import (
 	"encoding/gob"
-	"github.com/runningwild/haunts/base"
+	"../../base"
 	"path/filepath"
 )
 

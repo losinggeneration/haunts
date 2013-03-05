@@ -5,9 +5,9 @@ import (
 	"encoding/gob"
 	"github.com/orfjackal/gospec/src/gospec"
 	. "github.com/orfjackal/gospec/src/gospec"
-	"github.com/runningwild/haunts/base"
-	"github.com/runningwild/haunts/game"
-	"github.com/runningwild/haunts/game/actions"
+	"../../base"
+	"../../game"
+	"../../game/actions"
 	"path/filepath"
 )
 

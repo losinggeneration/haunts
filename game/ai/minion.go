@@ -2,7 +2,7 @@ package ai
 
 import (
 	"fmt"
-	"github.com/runningwild/haunts/game"
+	"../../game"
 	lua "github.com/xenith-studios/golua"
 )
 

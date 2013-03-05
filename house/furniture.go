@@ -2,8 +2,8 @@ package house
 
 import (
 	gl "github.com/chsc/gogl/gl21"
-	"github.com/runningwild/haunts/base"
-	"github.com/runningwild/haunts/texture"
+	"../base"
+	"../texture"
 	"github.com/runningwild/mathgl"
 )
 

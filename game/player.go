@@ -7,7 +7,7 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"github.com/runningwild/haunts/base"
+	"../base"
 	lua "github.com/xenith-studios/golua"
 	"hash/fnv"
 	"io"

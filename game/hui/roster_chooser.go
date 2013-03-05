@@ -3,8 +3,8 @@ package hui // haunts ui
 import (
 	"github.com/runningwild/glop/gin"
 	"github.com/runningwild/glop/gui"
-	"github.com/runningwild/haunts/base"
-	"github.com/runningwild/haunts/texture"
+	"../../base"
+	"../../texture"
 	"github.com/runningwild/opengl/gl"
 	"path/filepath"
 )

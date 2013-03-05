@@ -1,7 +1,7 @@
 package game
 
 import (
-	"github.com/runningwild/haunts/game/status"
+	"../game/status"
 )
 
 func (g *Game) DoAttack(attacker, defender *Entity, strength int, kind status.Kind) bool {

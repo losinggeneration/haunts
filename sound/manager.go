@@ -5,7 +5,7 @@ package sound
 
 import (
 	fmod "github.com/runningwild/fmod/event"
-	"github.com/runningwild/haunts/base"
+	"../base"
 	"math"
 	"path/filepath"
 	"time"

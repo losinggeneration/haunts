@@ -2,7 +2,7 @@ package texture
 
 import (
 	"github.com/runningwild/glop/render"
-	"github.com/runningwild/haunts/base"
+	"../base"
 	"github.com/runningwild/mathgl"
 	"github.com/runningwild/memory"
 	"github.com/runningwild/opengl/gl"

@@ -3,7 +3,7 @@ package house
 import (
 	"github.com/runningwild/glop/gin"
 	"github.com/runningwild/glop/gui"
-	"github.com/runningwild/haunts/base"
+	"../base"
 	"github.com/runningwild/mathgl"
 	"github.com/runningwild/opengl/gl"
 	"math"

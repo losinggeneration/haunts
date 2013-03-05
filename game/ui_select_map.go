@@ -3,10 +3,10 @@ package game
 import (
 	gl "github.com/chsc/gogl/gl21"
 	"github.com/runningwild/glop/gui"
-	"github.com/runningwild/haunts/base"
-	"github.com/runningwild/haunts/game/hui"
-	"github.com/runningwild/haunts/house"
-	"github.com/runningwild/haunts/texture"
+	"../base"
+	"../game/hui"
+	"../house"
+	"../texture"
 	"path/filepath"
 )
 

@@ -2,7 +2,7 @@ package status_test
 
 import (
 	"github.com/orfjackal/gospec/src/gospec"
-	"github.com/runningwild/haunts/game/status"
+	"../../game/status"
 	"testing"
 )
 
