@@ -11,15 +11,15 @@ all: haunts
 # Dependencies
 haunts: GEN_version.go $(HAUNTS_SRCS)
 	@echo Building $@
-	@go build
+	go build
 
 tools/tools: $(tools_SRCS)
 	@echo Building $@
-	@cd $(dir $@) && go build
+	cd $(dir $@) && go build
 
 GEN_version.go: tools/tools
 	@echo Generating $@
-	@cd tools && ./tools
+	cd tools && ./tools
 
 clean:
 	rm -fr tools/tools haunts GEN_version.go
