@@ -5,9 +5,9 @@ import (
   "bytes"
   "encoding/gob"
   "github.com/MobRulesGames/glop/gui"
-  "github.com/MobRulesGames/haunts/base"
-  "github.com/MobRulesGames/haunts/texture"
-  "github.com/MobRulesGames/haunts/house"
+  "../base"
+  "../texture"
+  "../house"
   lua "github.com/MobRulesGames/golua"
 )
 

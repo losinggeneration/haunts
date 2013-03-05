@@ -3,9 +3,9 @@ package game
 import (
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
-  "github.com/MobRulesGames/haunts/base"
-  "github.com/MobRulesGames/haunts/house"
-  "github.com/MobRulesGames/haunts/mrgnet"
+  "../base"
+  "../house"
+  "../mrgnet"
   "math/rand"
   "sort"
 )

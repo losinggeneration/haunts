@@ -6,9 +6,9 @@ import (
   "bytes"
   "github.com/orfjackal/gospec/src/gospec"
   . "github.com/orfjackal/gospec/src/gospec"
-  "github.com/MobRulesGames/haunts/base"
-  "github.com/MobRulesGames/haunts/game"
-  "github.com/MobRulesGames/haunts/game/actions"
+  "../../base"
+  "../../game"
+  "../../game/actions"
 )
 
 var datadir string

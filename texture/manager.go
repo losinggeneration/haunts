@@ -2,7 +2,7 @@ package texture
 
 import (
   "github.com/MobRulesGames/glop/render"
-  "github.com/MobRulesGames/haunts/base"
+  "../base"
   "github.com/MobRulesGames/mathgl"
   "github.com/MobRulesGames/memory"
   "github.com/MobRulesGames/opengl/gl"

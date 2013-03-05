@@ -3,7 +3,7 @@ package status_test
 import (
   "testing"
   "github.com/orfjackal/gospec/src/gospec"
-  "github.com/MobRulesGames/haunts/game/status"
+  "../../game/status"
 )
 
 func TestAllSpecs(t *testing.T) {

@@ -2,8 +2,8 @@ package hui // haunts ui
 
 import (
   "github.com/MobRulesGames/opengl/gl"
-  "github.com/MobRulesGames/haunts/base"
-  "github.com/MobRulesGames/haunts/texture"
+  "../../base"
+  "../../texture"
   "github.com/MobRulesGames/glop/gui"
   "github.com/MobRulesGames/glop/gin"
   "path/filepath"

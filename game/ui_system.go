@@ -5,8 +5,8 @@ import (
   "time"
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
-  "github.com/MobRulesGames/haunts/texture"
-  "github.com/MobRulesGames/haunts/base"
+  "../texture"
+  "../base"
   "github.com/MobRulesGames/opengl/gl"
 )
 

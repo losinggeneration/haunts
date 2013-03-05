@@ -10,7 +10,7 @@ import (
   "bytes"
   "hash/fnv"
   "path/filepath"
-  "github.com/MobRulesGames/haunts/base"
+  "../base"
   "encoding/gob"
   lua "github.com/MobRulesGames/golua"
 )

@@ -5,11 +5,11 @@ import (
   "path/filepath"
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
-  "github.com/MobRulesGames/haunts/base"
-  "github.com/MobRulesGames/haunts/game"
-  "github.com/MobRulesGames/haunts/house"
-  "github.com/MobRulesGames/haunts/texture"
-  "github.com/MobRulesGames/haunts/game/status"
+  "../../base"
+  "../../game"
+  "../../house"
+  "../../texture"
+  "../../game/status"
   lua "github.com/MobRulesGames/golua"
 )
 

@@ -2,8 +2,8 @@ package house
 
 import (
   gl "github.com/MobRulesGames/gogl/gl21"
-  "github.com/MobRulesGames/haunts/base"
-  "github.com/MobRulesGames/haunts/texture"
+  "../base"
+  "../texture"
   "github.com/MobRulesGames/mathgl"
   "unsafe"
 )

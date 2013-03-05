@@ -5,7 +5,7 @@ import (
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
   "github.com/MobRulesGames/glop/util/algorithm"
-  "github.com/MobRulesGames/haunts/base"
+  "../base"
 )
 
 type FurniturePanel struct {

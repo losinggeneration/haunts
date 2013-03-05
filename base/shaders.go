@@ -101,7 +101,7 @@ func InitShaders() {
       // Create the vertex shader
       vertex_id, ok := vertex_shaders[shader.Vertex_path]
       if !ok {
-        vertex_id = uint32(gl.CreateShader(gl.VERTEX_SHADER))
+        vertex_id = gl.CreateShader(gl.VERTEX_SHADER)
         pointer := &vdata[0]
         length := gl.Int(len(vdata))
         gl.ShaderSource(vertex_id, 1, (**gl.Char)(unsafe.Pointer(&pointer)), &length)
@@ -117,7 +117,7 @@ func InitShaders() {
       // Create the fragment shader
       fragment_id, ok := fragment_shaders[shader.Fragment_path]
       if !ok {
-        fragment_id = uint32(gl.CreateShader(gl.FRAGMENT_SHADER))
+        fragment_id = gl.CreateShader(gl.FRAGMENT_SHADER)
         pointer := &fdata[0]
         length := gl.Int(len(fdata))
         gl.ShaderSource(fragment_id, 1, (**gl.Char)(unsafe.Pointer(&pointer)), &length)
@@ -144,7 +144,7 @@ func InitShaders() {
 
       vertex_shaders[shader.Vertex_path] = vertex_id
       fragment_shaders[shader.Fragment_path] = fragment_id
-      shader_progs[shader.Name] = uint32(program_id)
+      shader_progs[shader.Name] = program_id
     }
   })
 }
