@@ -3,10 +3,10 @@ package status_test
 import (
 	"bytes"
 	"encoding/gob"
-	"github.com/orfjackal/gospec/src/gospec"
-	. "github.com/orfjackal/gospec/src/gospec"
-	"../../base"
-	"../../game/status"
+	"github.com/MobRulesGames/gospec/src/gospec"
+	. "github.com/MobRulesGames/gospec/src/gospec"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/game/status"
 	"path/filepath"
 )
 

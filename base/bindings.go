@@ -2,7 +2,7 @@ package base
 
 import (
 	"fmt"
-	"github.com/runningwild/glop/gin"
+	"github.com/MobRulesGames/glop/gin"
 	"strings"
 )
 

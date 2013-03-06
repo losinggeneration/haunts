@@ -2,8 +2,8 @@ package ai
 
 import (
 	"fmt"
-	"../../game"
-	lua "github.com/xenith-studios/golua"
+	"github.com/MobRulesGames/haunts/game"
+	lua "github.com/MobRulesGames/golua"
 )
 
 func (a *Ai) addMinionsContext() {

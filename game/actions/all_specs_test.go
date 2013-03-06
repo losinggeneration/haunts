@@ -1,7 +1,7 @@
 package actions_test
 
 import (
-	"github.com/orfjackal/gospec/src/gospec"
+	"github.com/MobRulesGames/gospec/src/gospec"
 	"testing"
 )
 

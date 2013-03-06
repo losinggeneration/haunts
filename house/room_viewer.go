@@ -1,11 +1,11 @@
 package house
 
 import (
-	"github.com/runningwild/glop/gin"
-	"github.com/runningwild/glop/gui"
-	"../base"
-	"github.com/runningwild/mathgl"
-	"github.com/runningwild/opengl/gl"
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/mathgl"
+	"github.com/MobRulesGames/opengl/gl"
 	"math"
 )
 

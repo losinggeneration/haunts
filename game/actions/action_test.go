@@ -3,11 +3,11 @@ package actions_test
 import (
 	"bytes"
 	"encoding/gob"
-	"github.com/orfjackal/gospec/src/gospec"
-	. "github.com/orfjackal/gospec/src/gospec"
-	"../../base"
-	"../../game"
-	"../../game/actions"
+	"github.com/MobRulesGames/gospec/src/gospec"
+	. "github.com/MobRulesGames/gospec/src/gospec"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/game"
+	"github.com/MobRulesGames/haunts/game/actions"
 	"path/filepath"
 )
 

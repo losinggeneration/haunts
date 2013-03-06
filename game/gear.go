@@ -1,8 +1,8 @@
 package game
 
 import (
-	"../base"
-	"../texture"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/texture"
 )
 
 type gearDef struct {
