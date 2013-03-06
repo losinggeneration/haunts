@@ -2,14 +2,14 @@ package actions
 
 import (
 	"encoding/gob"
-	"github.com/runningwild/glop/gin"
-	"github.com/runningwild/glop/gui"
-	"../../base"
-	"../../game"
-	"../../game/status"
-	"../../texture"
-	"github.com/runningwild/opengl/gl"
-	lua "github.com/xenith-studios/golua"
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/game"
+	"github.com/MobRulesGames/haunts/game/status"
+	"github.com/MobRulesGames/haunts/texture"
+	"github.com/MobRulesGames/opengl/gl"
+	lua "github.com/MobRulesGames/golua"
 	"path/filepath"
 )
 

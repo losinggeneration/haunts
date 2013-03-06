@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/runningwild/glop/gin"
-	"github.com/runningwild/glop/gui"
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gui"
 )
 
 type SaveWidget struct {

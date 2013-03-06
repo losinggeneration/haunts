@@ -2,11 +2,11 @@ package game
 
 import (
 	"fmt"
-	"github.com/runningwild/glop/gin"
-	"github.com/runningwild/glop/gui"
-	"../base"
-	"../texture"
-	"github.com/runningwild/opengl/gl"
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/texture"
+	"github.com/MobRulesGames/opengl/gl"
 	"path/filepath"
 )
 

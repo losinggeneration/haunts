@@ -2,7 +2,7 @@ package status
 
 import (
 	"encoding/gob"
-	"../../base"
+	"github.com/MobRulesGames/haunts/base"
 	"path/filepath"
 )
 

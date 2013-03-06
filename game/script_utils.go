@@ -4,9 +4,9 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"../base"
-	"../house"
-	lua "github.com/xenith-studios/golua"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/house"
+	lua "github.com/MobRulesGames/golua"
 	"io"
 	"sort"
 )

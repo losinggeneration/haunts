@@ -1,7 +1,7 @@
 package texture
 
 import (
-	"github.com/runningwild/memory"
+	"github.com/MobRulesGames/memory"
 	"image"
 	"image/color"
 )

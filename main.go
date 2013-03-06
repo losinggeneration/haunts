@@ -2,17 +2,17 @@ package main
 
 import (
 	"fmt"
-	gl "github.com/chsc/gogl/gl21"
-	"github.com/runningwild/glop/gin"
-	"github.com/runningwild/glop/gos"
-	"github.com/runningwild/glop/gui"
-	"github.com/runningwild/glop/render"
-	"github.com/runningwild/glop/system"
-	"./base"
-	"./game"
-	"./house"
-	"./sound"
-	"github.com/runningwild/memory"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gos"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/glop/render"
+	"github.com/MobRulesGames/glop/system"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/game"
+	"github.com/MobRulesGames/haunts/house"
+	"github.com/MobRulesGames/haunts/sound"
+	"github.com/MobRulesGames/memory"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -22,10 +22,10 @@ import (
 
 	// Need to pull in all of the actions we define here and not in
 	// haunts/game because haunts/game/actions depends on it
-	_ "./game/actions"
-	_ "./game/ai"
+	_ "github.com/MobRulesGames/haunts/game/actions"
+	_ "github.com/MobRulesGames/haunts/game/ai"
 
-	"./game/status"
+	"github.com/MobRulesGames/haunts/game/status"
 )
 
 var (

@@ -1,8 +1,8 @@
 package house
 
 import (
-	"github.com/runningwild/glop/render"
-	"github.com/runningwild/opengl/gl"
+	"github.com/MobRulesGames/glop/render"
+	"github.com/MobRulesGames/opengl/gl"
 	"runtime"
 )
 

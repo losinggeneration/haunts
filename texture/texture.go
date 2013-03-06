@@ -1,8 +1,8 @@
 package texture
 
 import (
-	"github.com/runningwild/opengl/gl"
-	"github.com/runningwild/opengl/glu"
+	"github.com/MobRulesGames/opengl/gl"
+	"github.com/MobRulesGames/opengl/glu"
 )
 
 var error_texture gl.Texture
