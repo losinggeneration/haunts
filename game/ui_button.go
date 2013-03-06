@@ -3,9 +3,9 @@ package game
 import (
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
-  "../base"
-  "../sound"
-  "../texture"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/sound"
+  "github.com/MobRulesGames/haunts/texture"
   "github.com/MobRulesGames/opengl/gl"
 )
 

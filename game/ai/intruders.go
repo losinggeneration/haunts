@@ -2,7 +2,7 @@ package ai
 
 import (
   "fmt"
-  "../../game"
+  "github.com/MobRulesGames/haunts/game"
   lua "github.com/MobRulesGames/golua"
 )
 

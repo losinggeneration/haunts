@@ -1,7 +1,7 @@
 package game
 
 import (
-  "../game/status"
+  "github.com/MobRulesGames/haunts/game/status"
 )
 
 func (g *Game) DoAttack(attacker, defender *Entity, strength int, kind status.Kind) bool {

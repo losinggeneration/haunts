@@ -3,8 +3,8 @@ package game
 import (
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
-  "../base"
-  "../texture"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/texture"
   "github.com/MobRulesGames/opengl/gl"
   "path/filepath"
 )

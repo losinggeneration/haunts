@@ -4,7 +4,7 @@ import (
   "sort"
   "github.com/MobRulesGames/GoLLRB/llrb"
   "github.com/MobRulesGames/glop/util/algorithm"
-  "../base"
+  "github.com/MobRulesGames/haunts/base"
 )
 
 type endpoint struct {

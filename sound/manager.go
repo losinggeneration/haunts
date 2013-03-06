@@ -4,7 +4,7 @@ package sound
 
 import (
   fmod "github.com/MobRulesGames/fmod/event"
-  "../base"
+  "github.com/MobRulesGames/haunts/base"
   "math"
   "path/filepath"
   "time"

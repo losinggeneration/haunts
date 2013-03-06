@@ -6,9 +6,9 @@ import (
   "github.com/MobRulesGames/glop/gin"
   "github.com/MobRulesGames/glop/gui"
   "github.com/MobRulesGames/glop/util/algorithm"
-  "../base"
-  "../sound"
-  "../texture"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/sound"
+  "github.com/MobRulesGames/haunts/texture"
   "math"
   "path/filepath"
 )

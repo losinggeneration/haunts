@@ -15,17 +15,17 @@ import (
   "github.com/MobRulesGames/memory"
   "github.com/MobRulesGames/glop/render"
   "github.com/MobRulesGames/glop/system"
-  "./base"
-  "./game"
-  "./sound"
-  "./house"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/game"
+  "github.com/MobRulesGames/haunts/sound"
+  "github.com/MobRulesGames/haunts/house"
 
   // Need to pull in all of the actions we define here and not in
   // haunts/game because haunts/game/actions depends on it
-  _ "./game/actions"
-  _ "./game/ai"
+  _ "github.com/MobRulesGames/haunts/game/actions"
+  _ "github.com/MobRulesGames/haunts/game/ai"
 
-  "./game/status"
+  "github.com/MobRulesGames/haunts/game/status"
 )
 
 var (

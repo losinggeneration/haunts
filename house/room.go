@@ -4,8 +4,8 @@ import (
   "fmt"
   gl "github.com/MobRulesGames/gogl/gl21"
   "github.com/MobRulesGames/glop/gui"
-  "../base"
-  "../texture"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/texture"
   "github.com/MobRulesGames/mathgl"
   "image"
   "math"
@@ -189,11 +189,11 @@ func (room *Room) renderFurniture(floor mathgl.Mat4, base_alpha byte, drawables 
     _, boty := board_to_window(near_x, near_y)
     vis := visibilityOfObject(room.X, room.Y, d, los_tex)
     r, g, b, a := d.Color()
-    r = byte(alphaMult(r, vis))
-    g = byte(alphaMult(g, vis))
-    b = byte(alphaMult(b, vis))
-    a = byte(alphaMult(a, vis))
-    a = byte(alphaMult(a, base_alpha))
+    r = alphaMult(r, vis)
+    g = alphaMult(g, vis)
+    b = alphaMult(b, vis)
+    a = alphaMult(a, vis)
+    a = alphaMult(a, base_alpha)
     gl.Color4ub(gl.Ubyte(r), gl.Ubyte(g), gl.Ubyte(b), gl.Ubyte(a))
     d.Render(mathgl.Vec2{leftx, boty}, rightx-leftx)
   }
@@ -263,7 +263,7 @@ var Foo int = 0
 func (room *Room) render(floor, left, right mathgl.Mat4, zoom float32, base_alpha byte, drawables []Drawable, los_tex *LosTexture, floor_drawers []FloorDrawer) {
   do_color := func(r, g, b, a byte) {
     R, G, B, A := room.Color()
-    A = byte(alphaMult(A, base_alpha))
+    A = alphaMult(A, base_alpha)
     gl.Color4ub(gl.Ubyte(alphaMult(R, r)), gl.Ubyte(alphaMult(G, g)), gl.Ubyte(alphaMult(B, b)), gl.Ubyte(alphaMult(A, a)))
   }
   gl.Enable(gl.TEXTURE_2D)
@@ -465,13 +465,13 @@ func (room *Room) render(floor, left, right mathgl.Mat4, zoom float32, base_alph
       if ids.left_buffer != 0 {
         gl.StencilFunc(gl.ALWAYS, 1, 1)
         gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, ids.left_buffer)
-        do_color(R, G, B, byte(alphaMult(A, room.far_left.wall_alpha)))
+        do_color(R, G, B, alphaMult(A, room.far_left.wall_alpha))
         gl.DrawElements(gl.TRIANGLES, ids.left_count, gl.UNSIGNED_SHORT, nil)
       }
       if ids.right_buffer != 0 {
         gl.StencilFunc(gl.ALWAYS, 1, 1)
         gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, ids.right_buffer)
-        do_color(R, G, B, byte(alphaMult(A, room.far_right.wall_alpha)))
+        do_color(R, G, B, alphaMult(A, room.far_right.wall_alpha))
         gl.DrawElements(gl.TRIANGLES, ids.right_count, gl.UNSIGNED_SHORT, nil)
       }
     }

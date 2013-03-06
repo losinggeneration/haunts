@@ -3,10 +3,10 @@ package ai
 import (
   "fmt"
   "github.com/MobRulesGames/glop/util/algorithm"
-  "../../base"
-  "../../game"
-  "../../game/actions"
-  "../../house"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/game"
+  "github.com/MobRulesGames/haunts/game/actions"
+  "github.com/MobRulesGames/haunts/house"
   lua "github.com/MobRulesGames/golua"
   "sort"
 )

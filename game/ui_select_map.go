@@ -2,10 +2,10 @@ package game
 
 import (
   "github.com/MobRulesGames/glop/gui"
-  "../house"
-  "../game/hui"
-  "../base"
-  "../texture"
+  "github.com/MobRulesGames/haunts/house"
+  "github.com/MobRulesGames/haunts/game/hui"
+  "github.com/MobRulesGames/haunts/base"
+  "github.com/MobRulesGames/haunts/texture"
   gl "github.com/MobRulesGames/gogl/gl21"
   "path/filepath"
 )

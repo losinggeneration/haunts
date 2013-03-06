@@ -3,7 +3,7 @@ package status
 import (
   "encoding/gob"
   "path/filepath"
-  "../../base"
+  "github.com/MobRulesGames/haunts/base"
 )
 
 // Conditions represent instantaneous or ongoing Conditions on an entity.

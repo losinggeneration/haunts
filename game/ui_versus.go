@@ -3,7 +3,7 @@ package game
 import (
   "github.com/MobRulesGames/glop/gui"
   "github.com/MobRulesGames/glop/util/algorithm"
-  "../base"
+  "github.com/MobRulesGames/haunts/base"
   "path/filepath"
 )
 
