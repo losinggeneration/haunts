@@ -205,7 +205,7 @@ func LuaPushSmartFunctionTable(L *lua.State, ft FunctionTable) {
 
   L.NewTable()
   L.PushString("__index")
-  L.PushGoFunction(func(L *lua.State) int {
+  L.PushGoFunctionAsCFunction(func(L *lua.State) int {
     name := L.ToString(-1)
     if f, ok := myft[name]; ok {
       f()

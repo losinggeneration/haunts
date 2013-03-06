@@ -19,41 +19,41 @@ func (a *Ai) addEntityContext() {
 
   a.L.NewTable()
   game.LuaPushSmartFunctionTable(a.L, game.FunctionTable{
-    "BasicAttack":        func() { a.L.PushGoFunction(DoBasicAttackFunc(a)) },
-    "AoeAttack":          func() { a.L.PushGoFunction(DoAoeAttackFunc(a)) },
-    "Move":               func() { a.L.PushGoFunction(DoMoveFunc(a)) },
-    "DoorToggle":         func() { a.L.PushGoFunction(DoDoorToggleFunc(a)) },
-    "InteractWithObject": func() { a.L.PushGoFunction(DoInteractWithObjectFunc(a)) },
+    "BasicAttack":        func() { a.L.PushGoFunctionAsCFunction(DoBasicAttackFunc(a)) },
+    "AoeAttack":          func() { a.L.PushGoFunctionAsCFunction(DoAoeAttackFunc(a)) },
+    "Move":               func() { a.L.PushGoFunctionAsCFunction(DoMoveFunc(a)) },
+    "DoorToggle":         func() { a.L.PushGoFunctionAsCFunction(DoDoorToggleFunc(a)) },
+    "InteractWithObject": func() { a.L.PushGoFunctionAsCFunction(DoInteractWithObjectFunc(a)) },
   })
   a.L.SetMetaTable(-2)
   a.L.SetGlobal("Do")
 
   a.L.NewTable()
   game.LuaPushSmartFunctionTable(a.L, game.FunctionTable{
-    "AllPathablePoints":          func() { a.L.PushGoFunction(AllPathablePointsFunc(a)) },
-    "RangedDistBetweenPositions": func() { a.L.PushGoFunction(RangedDistBetweenPositionsFunc(a)) },
-    "RangedDistBetweenEntities":  func() { a.L.PushGoFunction(RangedDistBetweenEntitiesFunc(a)) },
-    "NearestNEntities":           func() { a.L.PushGoFunction(NearestNEntitiesFunc(a.ent)) },
-    "Waypoints":                  func() { a.L.PushGoFunction(WaypointsFunc(a.ent)) },
-    "Exists":                     func() { a.L.PushGoFunction(ExistsFunc(a)) },
-    "BestAoeAttackPos":           func() { a.L.PushGoFunction(BestAoeAttackPosFunc(a)) },
-    "NearbyUnexploredRooms":      func() { a.L.PushGoFunction(NearbyUnexploredRoomsFunc(a)) },
-    "RoomPath":                   func() { a.L.PushGoFunction(RoomPathFunc(a)) },
-    "RoomContaining":             func() { a.L.PushGoFunction(RoomContainingFunc(a)) },
-    "RoomsAreEqual":              func() { a.L.PushGoFunction(RoomAreEqualFunc(a)) },
-    "AllDoorsBetween":            func() { a.L.PushGoFunction(AllDoorsBetween(a)) },
-    "AllDoorsOn":                 func() { a.L.PushGoFunction(AllDoorsOn(a)) },
-    "DoorPositions":              func() { a.L.PushGoFunction(DoorPositionsFunc(a)) },
-    "DoorIsOpen":                 func() { a.L.PushGoFunction(DoorIsOpenFunc(a)) },
-    "RoomPositions":              func() { a.L.PushGoFunction(RoomPositionsFunc(a)) },
-    "Rand":                       func() { a.L.PushGoFunction(randFunc(a)) },
+    "AllPathablePoints":          func() { a.L.PushGoFunctionAsCFunction(AllPathablePointsFunc(a)) },
+    "RangedDistBetweenPositions": func() { a.L.PushGoFunctionAsCFunction(RangedDistBetweenPositionsFunc(a)) },
+    "RangedDistBetweenEntities":  func() { a.L.PushGoFunctionAsCFunction(RangedDistBetweenEntitiesFunc(a)) },
+    "NearestNEntities":           func() { a.L.PushGoFunctionAsCFunction(NearestNEntitiesFunc(a.ent)) },
+    "Waypoints":                  func() { a.L.PushGoFunctionAsCFunction(WaypointsFunc(a.ent)) },
+    "Exists":                     func() { a.L.PushGoFunctionAsCFunction(ExistsFunc(a)) },
+    "BestAoeAttackPos":           func() { a.L.PushGoFunctionAsCFunction(BestAoeAttackPosFunc(a)) },
+    "NearbyUnexploredRooms":      func() { a.L.PushGoFunctionAsCFunction(NearbyUnexploredRoomsFunc(a)) },
+    "RoomPath":                   func() { a.L.PushGoFunctionAsCFunction(RoomPathFunc(a)) },
+    "RoomContaining":             func() { a.L.PushGoFunctionAsCFunction(RoomContainingFunc(a)) },
+    "RoomsAreEqual":              func() { a.L.PushGoFunctionAsCFunction(RoomAreEqualFunc(a)) },
+    "AllDoorsBetween":            func() { a.L.PushGoFunctionAsCFunction(AllDoorsBetween(a)) },
+    "AllDoorsOn":                 func() { a.L.PushGoFunctionAsCFunction(AllDoorsOn(a)) },
+    "DoorPositions":              func() { a.L.PushGoFunctionAsCFunction(DoorPositionsFunc(a)) },
+    "DoorIsOpen":                 func() { a.L.PushGoFunctionAsCFunction(DoorIsOpenFunc(a)) },
+    "RoomPositions":              func() { a.L.PushGoFunctionAsCFunction(RoomPositionsFunc(a)) },
+    "Rand":                       func() { a.L.PushGoFunctionAsCFunction(randFunc(a)) },
   })
   a.L.SetMetaTable(-2)
   a.L.SetGlobal("Utils")
 
   a.L.NewTable()
   game.LuaPushSmartFunctionTable(a.L, game.FunctionTable{
-    "GetEntsByName": func() { a.L.PushGoFunction(GetEntsByName(a)) },
+    "GetEntsByName": func() { a.L.PushGoFunctionAsCFunction(GetEntsByName(a)) },
   })
   a.L.SetMetaTable(-2)
   a.L.SetGlobal("Cheat")
