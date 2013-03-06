@@ -1,5 +1,3 @@
-//
-
 // +build !nosound
 package sound
 
