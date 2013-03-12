@@ -3,7 +3,7 @@ package ai
 import (
 	"fmt"
 	"github.com/MobRulesGames/haunts/game"
-	lua "github.com/MobRulesGames/golua"
+	lua "github.com/MobRulesGames/golua/lua"
 )
 
 func (a *Ai) addDenizensContext() {
@@ -13,7 +13,7 @@ func (a *Ai) addDenizensContext() {
 	a.L.Register("AllDenizens", allDenizens(a))
 }
 
-func isActiveDenizen(a *Ai) lua.GoFunction {
+func isActiveDenizen(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "IsActive", game.LuaEntity) {
 			return 0
@@ -32,13 +32,13 @@ func isActiveDenizen(a *Ai) lua.GoFunction {
 	}
 }
 
-func allDenizens(a *Ai) lua.GoFunction {
+func allDenizens(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "AllDenizens") {
 			return 0
 		}
 		L.NewTable()
-		count := 0
+		count := int64(0)
 		for _, ent := range a.game.Ents {
 			if ent.HauntEnt != nil {
 				count++
@@ -51,7 +51,7 @@ func allDenizens(a *Ai) lua.GoFunction {
 	}
 }
 
-func setDenizenMasterInfo(a *Ai) lua.GoFunction {
+func setDenizenMasterInfo(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "SetEntityMasterInfo", game.LuaEntity, game.LuaString, game.LuaAnything) {
 			return 0
@@ -77,7 +77,7 @@ func setDenizenMasterInfo(a *Ai) lua.GoFunction {
 	}
 }
 
-func execDenizen(a *Ai) lua.GoFunction {
+func execDenizen(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaNumParamsOk(L, 1, "ExecDenizen") {
 			return 0

@@ -9,7 +9,7 @@ import (
 	"github.com/MobRulesGames/haunts/game/status"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/opengl/gl"
-	lua "github.com/MobRulesGames/golua"
+	lua "github.com/MobRulesGames/golua/lua"
 	"path/filepath"
 )
 
@@ -96,7 +96,7 @@ func (a *SummonAction) Push(L *lua.State) {
 	L.PushString(a.Name)
 	L.SetTable(-3)
 	L.PushString("Ap")
-	L.PushInteger(a.Ap)
+	L.PushInteger(int64(a.Ap))
 	L.SetTable(-3)
 	L.PushString("Entity")
 	L.PushString(a.Ent_name)
@@ -105,13 +105,13 @@ func (a *SummonAction) Push(L *lua.State) {
 	L.PushBoolean(a.Personal_los)
 	L.SetTable(-3)
 	L.PushString("Range")
-	L.PushInteger(a.Range)
+	L.PushInteger(int64(a.Range))
 	L.SetTable(-3)
 	L.PushString("Ammo")
 	if a.Current_ammo == -1 {
 		L.PushInteger(1000)
 	} else {
-		L.PushInteger(a.Current_ammo)
+		L.PushInteger(int64(a.Current_ammo))
 	}
 	L.SetTable(-3)
 

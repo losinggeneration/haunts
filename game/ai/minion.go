@@ -3,7 +3,7 @@ package ai
 import (
 	"fmt"
 	"github.com/MobRulesGames/haunts/game"
-	lua "github.com/MobRulesGames/golua"
+	lua "github.com/MobRulesGames/golua/lua"
 )
 
 func (a *Ai) addMinionsContext() {
@@ -13,7 +13,7 @@ func (a *Ai) addMinionsContext() {
 	a.L.Register("AllMinions", allMinions(a))
 }
 
-func isActiveMinion(a *Ai) lua.GoFunction {
+func isActiveMinion(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "IsActive", game.LuaEntity) {
 			return 0
@@ -32,7 +32,7 @@ func isActiveMinion(a *Ai) lua.GoFunction {
 	}
 }
 
-func allMinions(a *Ai) lua.GoFunction {
+func allMinions(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "AllMinions") {
 			return 0
@@ -42,7 +42,7 @@ func allMinions(a *Ai) lua.GoFunction {
 		for _, ent := range a.game.Ents {
 			if ent.HauntEnt != nil {
 				count++
-				L.PushInteger(count)
+				L.PushInteger(int64(count))
 				game.LuaPushEntity(L, ent)
 				L.SetTable(-3)
 			}
@@ -51,7 +51,7 @@ func allMinions(a *Ai) lua.GoFunction {
 	}
 }
 
-func setMinionMasterInfo(a *Ai) lua.GoFunction {
+func setMinionMasterInfo(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "SetEntityMasterInfo", game.LuaEntity, game.LuaString, game.LuaAnything) {
 			return 0
@@ -77,7 +77,7 @@ func setMinionMasterInfo(a *Ai) lua.GoFunction {
 	}
 }
 
-func execMinion(a *Ai) lua.GoFunction {
+func execMinion(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaNumParamsOk(L, 1, "ExecMinion") {
 			return 0

@@ -7,7 +7,7 @@ import (
 	"github.com/MobRulesGames/haunts/game"
 	"github.com/MobRulesGames/haunts/game/actions"
 	"github.com/MobRulesGames/haunts/house"
-	lua "github.com/MobRulesGames/golua"
+	lua "github.com/MobRulesGames/golua/lua"
 	"sort"
 )
 
@@ -17,46 +17,46 @@ func (a *Ai) addEntityContext() {
 	game.LuaPushEntity(a.L, a.ent)
 	a.L.SetGlobal("Me")
 
-	a.L.NewTable()
-	game.LuaPushSmartFunctionTable(a.L, game.FunctionTable{
-		"BasicAttack":        func() { a.L.PushGoFunctionAsCFunction(DoBasicAttackFunc(a)) },
-		"AoeAttack":          func() { a.L.PushGoFunctionAsCFunction(DoAoeAttackFunc(a)) },
-		"Move":               func() { a.L.PushGoFunctionAsCFunction(DoMoveFunc(a)) },
-		"DoorToggle":         func() { a.L.PushGoFunctionAsCFunction(DoDoorToggleFunc(a)) },
-		"InteractWithObject": func() { a.L.PushGoFunctionAsCFunction(DoInteractWithObjectFunc(a)) },
+	//a.L.NewTable()
+	game.LuaPushSmartFunctionTable(a.L, "Do", game.FunctionTable{
+		"BasicAttack":        func() { a.L.PushGoClosure(DoBasicAttackFunc(a), 1) },
+		"AoeAttack":          func() { a.L.PushGoClosure(DoAoeAttackFunc(a), 1) },
+		"Move":               func() { a.L.PushGoClosure(DoMoveFunc(a), 1) },
+		"DoorToggle":         func() { a.L.PushGoClosure(DoDoorToggleFunc(a), 1) },
+		"InteractWithObject": func() { a.L.PushGoClosure(DoInteractWithObjectFunc(a), 1) },
 	})
-	a.L.SetMetaTable(-2)
-	a.L.SetGlobal("Do")
+	//a.L.SetMetaTable(-2)
+	//a.L.SetGlobal("Do")
 
-	a.L.NewTable()
-	game.LuaPushSmartFunctionTable(a.L, game.FunctionTable{
-		"AllPathablePoints":          func() { a.L.PushGoFunctionAsCFunction(AllPathablePointsFunc(a)) },
-		"RangedDistBetweenPositions": func() { a.L.PushGoFunctionAsCFunction(RangedDistBetweenPositionsFunc(a)) },
-		"RangedDistBetweenEntities":  func() { a.L.PushGoFunctionAsCFunction(RangedDistBetweenEntitiesFunc(a)) },
-		"NearestNEntities":           func() { a.L.PushGoFunctionAsCFunction(NearestNEntitiesFunc(a.ent)) },
-		"Waypoints":                  func() { a.L.PushGoFunctionAsCFunction(WaypointsFunc(a.ent)) },
-		"Exists":                     func() { a.L.PushGoFunctionAsCFunction(ExistsFunc(a)) },
-		"BestAoeAttackPos":           func() { a.L.PushGoFunctionAsCFunction(BestAoeAttackPosFunc(a)) },
-		"NearbyUnexploredRooms":      func() { a.L.PushGoFunctionAsCFunction(NearbyUnexploredRoomsFunc(a)) },
-		"RoomPath":                   func() { a.L.PushGoFunctionAsCFunction(RoomPathFunc(a)) },
-		"RoomContaining":             func() { a.L.PushGoFunctionAsCFunction(RoomContainingFunc(a)) },
-		"RoomsAreEqual":              func() { a.L.PushGoFunctionAsCFunction(RoomAreEqualFunc(a)) },
-		"AllDoorsBetween":            func() { a.L.PushGoFunctionAsCFunction(AllDoorsBetween(a)) },
-		"AllDoorsOn":                 func() { a.L.PushGoFunctionAsCFunction(AllDoorsOn(a)) },
-		"DoorPositions":              func() { a.L.PushGoFunctionAsCFunction(DoorPositionsFunc(a)) },
-		"DoorIsOpen":                 func() { a.L.PushGoFunctionAsCFunction(DoorIsOpenFunc(a)) },
-		"RoomPositions":              func() { a.L.PushGoFunctionAsCFunction(RoomPositionsFunc(a)) },
-		"Rand":                       func() { a.L.PushGoFunctionAsCFunction(randFunc(a)) },
+	//a.L.NewTable()
+	game.LuaPushSmartFunctionTable(a.L, "Utils", game.FunctionTable{
+		"AllPathablePoints":          func() { a.L.PushGoClosure(AllPathablePointsFunc(a), 1) },
+		"RangedDistBetweenPositions": func() { a.L.PushGoClosure(RangedDistBetweenPositionsFunc(a), 1) },
+		"RangedDistBetweenEntities":  func() { a.L.PushGoClosure(RangedDistBetweenEntitiesFunc(a), 1) },
+		"NearestNEntities":           func() { a.L.PushGoClosure(NearestNEntitiesFunc(a.ent), 1) },
+		"Waypoints":                  func() { a.L.PushGoClosure(WaypointsFunc(a.ent), 1) },
+		"Exists":                     func() { a.L.PushGoClosure(ExistsFunc(a), 1) },
+		"BestAoeAttackPos":           func() { a.L.PushGoClosure(BestAoeAttackPosFunc(a), 1) },
+		"NearbyUnexploredRooms":      func() { a.L.PushGoClosure(NearbyUnexploredRoomsFunc(a), 1) },
+		"RoomPath":                   func() { a.L.PushGoClosure(RoomPathFunc(a), 1) },
+		"RoomContaining":             func() { a.L.PushGoClosure(RoomContainingFunc(a), 1) },
+		"RoomsAreEqual":              func() { a.L.PushGoClosure(RoomAreEqualFunc(a), 1) },
+		"AllDoorsBetween":            func() { a.L.PushGoClosure(AllDoorsBetween(a), 1) },
+		"AllDoorsOn":                 func() { a.L.PushGoClosure(AllDoorsOn(a), 1) },
+		"DoorPositions":              func() { a.L.PushGoClosure(DoorPositionsFunc(a), 1) },
+		"DoorIsOpen":                 func() { a.L.PushGoClosure(DoorIsOpenFunc(a), 1) },
+		"RoomPositions":              func() { a.L.PushGoClosure(RoomPositionsFunc(a), 1) },
+		"Rand":                       func() { a.L.PushGoClosure(randFunc(a), 1) },
 	})
-	a.L.SetMetaTable(-2)
-	a.L.SetGlobal("Utils")
+	//a.L.SetMetaTable(-2)
+	//a.L.SetGlobal("Utils")
 
-	a.L.NewTable()
-	game.LuaPushSmartFunctionTable(a.L, game.FunctionTable{
-		"GetEntsByName": func() { a.L.PushGoFunctionAsCFunction(GetEntsByName(a)) },
+	//a.L.NewTable()
+	game.LuaPushSmartFunctionTable(a.L, "Cheat", game.FunctionTable{
+		"GetEntsByName": func() { a.L.PushGoClosure(GetEntsByName(a), 1) },
 	})
-	a.L.SetMetaTable(-2)
-	a.L.SetGlobal("Cheat")
+	//a.L.SetMetaTable(-2)
+	//a.L.SetGlobal("Cheat")
 }
 
 type entityDist struct {
@@ -111,7 +111,7 @@ func init() {
 //
 //    Outputs:
 //    points - array[table[x,y]]
-func AllPathablePointsFunc(a *Ai) lua.GoFunction {
+func AllPathablePointsFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "AllPathablePoints", game.LuaPoint, game.LuaPoint, game.LuaInteger, game.LuaInteger) {
 			return 0
@@ -153,7 +153,7 @@ func AllPathablePointsFunc(a *Ai) lua.GoFunction {
 		base.Log().Printf("%d/%d reachable from (%d, %d) -> (%d, %d)", len(reachable), len(dst), x1, y1, x2, y2)
 		for i, v := range reachable {
 			_, x, y := a.ent.Game().FromVertex(v)
-			L.PushInteger(i + 1)
+			L.PushInteger(int64(i + 1))
 			game.LuaPushPoint(L, x, y)
 			L.SetTable(-3)
 		}
@@ -173,7 +173,7 @@ func AllPathablePointsFunc(a *Ai) lua.GoFunction {
 //    res - table - Table containing the following values:
 //                  hit (boolean) - true iff the attack hit its target.
 //                  If the attack was invalid for some reason res will be nil.
-func DoBasicAttackFunc(a *Ai) lua.GoFunction {
+func DoBasicAttackFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "DoBasicAttack", game.LuaString, game.LuaEntity) {
 			return 0
@@ -225,7 +225,7 @@ func DoBasicAttackFunc(a *Ai) lua.GoFunction {
 //
 //    Outputs:
 //    res - boolean - true if the action performed, nil otherwise.
-func DoAoeAttackFunc(a *Ai) lua.GoFunction {
+func DoAoeAttackFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "DoAoeAttack", game.LuaString, game.LuaPoint) {
 			return 0
@@ -268,7 +268,7 @@ func DoAoeAttackFunc(a *Ai) lua.GoFunction {
 //    Outputs:
 //    pos  - table[x,y] - Position to place aoe for maximum results.
 //    hits - array[ents] - Visible entities that will be in the aoe
-func BestAoeAttackPosFunc(a *Ai) lua.GoFunction {
+func BestAoeAttackPosFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "BestAoeAttackPos", game.LuaString, game.LuaInteger, game.LuaString) {
 			return 0
@@ -301,7 +301,7 @@ func BestAoeAttackPosFunc(a *Ai) lua.GoFunction {
 		game.LuaPushPoint(L, x, y)
 		L.NewTable()
 		for i := range hits {
-			L.PushInteger(i + 1)
+			L.PushInteger(int64(i + 1))
 			game.LuaPushEntity(L, hits[i])
 			L.SetTable(-3)
 		}
@@ -325,7 +325,7 @@ func BestAoeAttackPosFunc(a *Ai) lua.GoFunction {
 //    Output:
 //    success = bool - True iff the move made it to a position in dsts.
 //    p - table[x,y] - New position of this entity, or nil if the move failed.
-func DoMoveFunc(a *Ai) lua.GoFunction {
+func DoMoveFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "DoMove", game.LuaArray, game.LuaInteger) {
 			return 0
@@ -340,7 +340,7 @@ func DoMoveFunc(a *Ai) lua.GoFunction {
 		n := int(L.ObjLen(-1))
 		dsts := make([]int, n)[0:0]
 		for i := 1; i <= n; i++ {
-			L.PushInteger(i)
+			L.PushInteger(int64(i))
 			L.GetTable(-2)
 			x, y := game.LuaToPoint(L, -1)
 			dsts = append(dsts, me.Game().ToVertex(x, y))
@@ -396,7 +396,7 @@ func DoMoveFunc(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    dist - integer - The ranged distance between the two positions.
-func RangedDistBetweenPositionsFunc(a *Ai) lua.GoFunction {
+func RangedDistBetweenPositionsFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "RangedDistBetweenPositions", game.LuaPoint, game.LuaPoint) {
 			return 0
@@ -412,9 +412,9 @@ func RangedDistBetweenPositionsFunc(a *Ai) lua.GoFunction {
 			dy = -dy
 		}
 		if dx > dy {
-			L.PushInteger(dx)
+			L.PushInteger(int64(dx))
 		} else {
-			L.PushInteger(dy)
+			L.PushInteger(int64(dy))
 		}
 		return 1
 	}
@@ -433,7 +433,7 @@ func RangedDistBetweenPositionsFunc(a *Ai) lua.GoFunction {
 //                     this will not necessarily be the same as
 //                     RangedDistBetweenPositions(pos(e1), pos(e2)) if at
 //                     least one of the entities isn't 1x1.
-func RangedDistBetweenEntitiesFunc(a *Ai) lua.GoFunction {
+func RangedDistBetweenEntitiesFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "RangedDistBetweenEntities", game.LuaEntity, game.LuaEntity) {
 			return 0
@@ -453,7 +453,7 @@ func RangedDistBetweenEntitiesFunc(a *Ai) lua.GoFunction {
 			}
 		}
 
-		L.PushInteger(rangedDistBetween(e1, e2))
+		L.PushInteger(int64(rangedDistBetween(e1, e2)))
 		return 1
 	}
 }
@@ -468,7 +468,7 @@ func RangedDistBetweenEntitiesFunc(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    e - boolean - True if the entity exists and has positive hp.
-func ExistsFunc(a *Ai) lua.GoFunction {
+func ExistsFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		// if !game.LuaCheckParamsOk(L, "exists", game.LuaTable) {
 		//   return 0
@@ -498,7 +498,7 @@ func ExistsFunc(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    ents - array[integer] - Array of entity ids.
-func NearestNEntitiesFunc(me *game.Entity) lua.GoFunction {
+func NearestNEntitiesFunc(me *game.Entity) lua.LuaGoFunction {
 	valid_kinds := map[string]bool{
 		"intruder": true,
 		"denizen":  true,
@@ -573,7 +573,7 @@ func NearestNEntitiesFunc(me *game.Entity) lua.GoFunction {
 		// populate it with the entity ids of the results.
 		L.NewTable()
 		for i := range eds {
-			L.PushInteger(i + 1)
+			L.PushInteger(int64(i + 1))
 			game.LuaPushEntity(L, eds[i].ent)
 			L.SetTable(-3)
 		}
@@ -581,7 +581,7 @@ func NearestNEntitiesFunc(me *game.Entity) lua.GoFunction {
 	}
 }
 
-func WaypointsFunc(me *game.Entity) lua.GoFunction {
+func WaypointsFunc(me *game.Entity) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "Waypoints") {
 			return 0
@@ -594,7 +594,7 @@ func WaypointsFunc(me *game.Entity) lua.GoFunction {
 				continue
 			}
 			count++
-			L.PushInteger(count)
+			L.PushInteger(int64(count))
 			L.NewTable()
 			L.PushString("Name")
 			L.PushString(wp.Name)
@@ -634,7 +634,7 @@ func checkFloorRoomDoor(h *house.HouseDef, floor, room, door int) bool {
 	return true
 }
 
-func NearbyUnexploredRoomsFunc(a *Ai) lua.GoFunction {
+func NearbyUnexploredRoomsFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "NearbyUnexploredRooms") {
 			return 0
@@ -657,7 +657,7 @@ func NearbyUnexploredRoomsFunc(a *Ai) lua.GoFunction {
 		}
 		L.NewTable()
 		for i := range unexplored {
-			L.PushInteger(i + 1)
+			L.PushInteger(int64(i + 1))
 			game.LuaPushRoom(L, a.game, a.game.House.Floors[0].Rooms[unexplored[i]])
 			L.SetTable(-3)
 		}
@@ -681,7 +681,7 @@ func NearbyUnexploredRoomsFunc(a *Ai) lua.GoFunction {
 //    Output:
 //    path - array - A list of rooms that connect src to dst, excluding src
 //    but including dst.
-func RoomPathFunc(a *Ai) lua.GoFunction {
+func RoomPathFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "roomPath", game.LuaRoom, game.LuaRoom) {
 			return 0
@@ -727,7 +727,7 @@ func RoomPathFunc(a *Ai) lua.GoFunction {
 			if i == 0 {
 				continue
 			} // Skip this one because we're in it already
-			L.PushInteger(i)
+			L.PushInteger(int64(i))
 			game.LuaPushRoom(L, g, g.House.Floors[0].Rooms[v])
 			L.SetTable(-3)
 		}
@@ -747,7 +747,7 @@ func RoomPathFunc(a *Ai) lua.GoFunction {
 //    Output:
 //    r - room - The room the specified entity is in, or nil if it can't be
 //    seen right now.
-func RoomContainingFunc(a *Ai) lua.GoFunction {
+func RoomContainingFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "roomContaining", game.LuaEntity) {
 			return 0
@@ -765,7 +765,7 @@ func RoomContainingFunc(a *Ai) lua.GoFunction {
 	}
 }
 
-func RoomAreEqualFunc(a *Ai) lua.GoFunction {
+func RoomAreEqualFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "RoomsAreEqual", game.LuaRoom, game.LuaRoom) {
 			return 0
@@ -787,7 +787,7 @@ func RoomAreEqualFunc(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    doors - array[door] - List of all doors connecting r1 and r2.
-func AllDoorsBetween(a *Ai) lua.GoFunction {
+func AllDoorsBetween(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "allDoorsBetween", game.LuaRoom, game.LuaRoom) {
 			return 0
@@ -813,7 +813,7 @@ func AllDoorsBetween(a *Ai) lua.GoFunction {
 			for _, door2 := range room2.Doors {
 				_, d := a.ent.Game().House.Floors[0].FindMatchingDoor(room1, door1)
 				if d == door2 {
-					L.PushInteger(count)
+					L.PushInteger(int64(count))
 					count++
 					game.LuaPushDoor(L, a.ent.Game(), door1)
 					L.SetTable(-3)
@@ -833,7 +833,7 @@ func AllDoorsBetween(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    doors - array[door] - List of all doors attached to the specified room.
-func AllDoorsOn(a *Ai) lua.GoFunction {
+func AllDoorsOn(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "allDoorsOn", game.LuaRoom) {
 			return 0
@@ -846,7 +846,7 @@ func AllDoorsOn(a *Ai) lua.GoFunction {
 
 		L.NewTable()
 		for i := range room.Doors {
-			L.PushInteger(i + 1)
+			L.PushInteger(int64(i + 1))
 			game.LuaPushDoor(L, a.ent.Game(), room.Doors[i])
 			L.SetTable(-3)
 		}
@@ -865,7 +865,7 @@ func AllDoorsOn(a *Ai) lua.GoFunction {
 //    Output:
 //    ps - array[table[x,y]] - List of all position this door can be opened
 //    and closed from.
-func DoorPositionsFunc(a *Ai) lua.GoFunction {
+func DoorPositionsFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "DoorPositions", game.LuaDoor) {
 			return 0
@@ -901,10 +901,10 @@ func DoorPositionsFunc(a *Ai) lua.GoFunction {
 		L.NewTable()
 		count := 1
 		for i := 0; i < door.Width; i++ {
-			L.PushInteger(count*2 - 1)
+			L.PushInteger(int64(count*2 - 1))
 			game.LuaPushPoint(L, room.X+x+dx*i, room.Y+y+dy*i)
 			L.SetTable(-3)
-			L.PushInteger(count * 2)
+			L.PushInteger(int64(count * 2))
 			game.LuaPushPoint(L, room.X+x+dx*i+dy, room.Y+y+dy*i+dx)
 			L.SetTable(-3)
 			count++
@@ -922,7 +922,7 @@ func DoorPositionsFunc(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    open - boolean - True if the door is open, false otherwise.
-func DoorIsOpenFunc(a *Ai) lua.GoFunction {
+func DoorIsOpenFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "doorIsOpen", game.LuaDoor) {
 			return 0
@@ -947,7 +947,7 @@ func DoorIsOpenFunc(a *Ai) lua.GoFunction {
 //    Output:
 //    res - boolean - True if the door was opened, false if it was closed.
 //    res will be nil if the action could not be performed for some reason.
-func DoDoorToggleFunc(a *Ai) lua.GoFunction {
+func DoDoorToggleFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "doDoorToggle", game.LuaDoor) {
 			return 0
@@ -983,7 +983,7 @@ func DoDoorToggleFunc(a *Ai) lua.GoFunction {
 	}
 }
 
-func DoInteractWithObjectFunc(a *Ai) lua.GoFunction {
+func DoInteractWithObjectFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "DoInteractWithObject", game.LuaEntity) {
 			return 0
@@ -1023,7 +1023,7 @@ func DoInteractWithObjectFunc(a *Ai) lua.GoFunction {
 //
 //    Output:
 //    ps - array[table[x,y]] - List of all position inside the specified room.
-func RoomPositionsFunc(a *Ai) lua.GoFunction {
+func RoomPositionsFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "roomPositions", game.LuaRoom) {
 			return 0
@@ -1038,7 +1038,7 @@ func RoomPositionsFunc(a *Ai) lua.GoFunction {
 		count := 1
 		for x := room.X; x < room.X+room.Size.Dx; x++ {
 			for y := room.Y; y < room.Y+room.Size.Dy; y++ {
-				L.PushInteger(count)
+				L.PushInteger(int64(count))
 				count++
 				game.LuaPushPoint(L, x, y)
 				L.SetTable(-3)
@@ -1048,18 +1048,18 @@ func RoomPositionsFunc(a *Ai) lua.GoFunction {
 	}
 }
 
-func randFunc(a *Ai) lua.GoFunction {
+func randFunc(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "Rand", game.LuaInteger) {
 			return 0
 		}
 		n := L.ToInteger(-1)
-		L.PushInteger(int(a.game.Rand.Int63()%int64(n)) + 1)
+		L.PushInteger(a.game.Rand.Int63()%int64(n) + 1)
 		return 1
 	}
 }
 
-func GetEntsByName(a *Ai) lua.GoFunction {
+func GetEntsByName(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "GetEntsByName", game.LuaString) {
 			return 0
@@ -1069,7 +1069,7 @@ func GetEntsByName(a *Ai) lua.GoFunction {
 		L.NewTable()
 		for _, ent := range a.game.Ents {
 			if ent.Name == name {
-				L.PushInteger(count)
+				L.PushInteger(int64(count))
 				count++
 				game.LuaPushEntity(L, ent)
 				L.SetTable(-3)

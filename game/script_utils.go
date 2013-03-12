@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/house"
-	lua "github.com/MobRulesGames/golua"
+	lua "github.com/MobRulesGames/golua/lua"
 	"io"
 	"sort"
 )
@@ -182,13 +182,15 @@ func LuaToEntity(L *lua.State, game *Game, index int) *Entity {
 
 type FunctionTable map[string]func()
 
-func LuaPushSmartFunctionTable(L *lua.State, ft FunctionTable) {
+// Create a table in Lua with Go functions 
+func LuaPushSmartFunctionTable(L *lua.State, tblname string, ft FunctionTable) {
 	// Copy it just in case - I can't imagine someone changing it after passing
 	// it to this function, but I don't want to take any chances.
 	myft := make(FunctionTable)
 	for n, f := range ft {
 		myft[n] = f
 	}
+
 	names := make([]string, len(myft))[0:0]
 	for name := range myft {
 		names = append(names, name)
@@ -202,10 +204,14 @@ func LuaPushSmartFunctionTable(L *lua.State, ft FunctionTable) {
 		valid_selectors += fmt.Sprintf("'%s'", name)
 	}
 	valid_selectors += "]."
+	base.Log().Printf("Functions available: %s\n", valid_selectors)
 
 	L.NewTable()
+
+	// create the metatable
+	L.NewTable()
 	L.PushString("__index")
-	L.PushGoFunctionAsCFunction(func(L *lua.State) int {
+	L.PushGoClosure(func(L *lua.State) int {
 		name := L.ToString(-1)
 		if f, ok := myft[name]; ok {
 			f()
@@ -214,8 +220,11 @@ func LuaPushSmartFunctionTable(L *lua.State, ft FunctionTable) {
 			L.PushNil()
 		}
 		return 1
-	})
+	}, 1)
 	L.SetTable(-3)
+
+	L.SetMetaTable(-2)
+	L.SetGlobal(tblname)
 }
 
 // Pushes an entity onto the stack, it is a table containing the following:
@@ -236,12 +245,13 @@ func LuaPushEntity(L *lua.State, _ent *Entity) {
 	L.PushString(_ent.Name)
 	L.SetTable(-3)
 	L.PushString("id")
-	L.PushInteger(int(_ent.Id))
+	L.PushInteger(int64(_ent.Id))
 	L.SetTable(-3)
 	L.PushString("type")
 	L.PushString("Entity")
 	L.SetTable(-3)
 
+/*
 	id := _ent.Id
 
 	// Meta table for the Entity so that any dynamic data is generated
@@ -356,25 +366,26 @@ func LuaPushEntity(L *lua.State, _ent *Entity) {
 		},
 	})
 	L.SetMetaTable(-2)
+*/
 }
 
 func LuaPushPoint(L *lua.State, x, y int) {
 	L.NewTable()
 	L.PushString("X")
-	L.PushInteger(x)
+	L.PushInteger(int64(x))
 	L.SetTable(-3)
 	L.PushString("Y")
-	L.PushInteger(y)
+	L.PushInteger(int64(y))
 	L.SetTable(-3)
 }
 
 func LuaPushDims(L *lua.State, dx, dy int) {
 	L.NewTable()
 	L.PushString("Dx")
-	L.PushInteger(dx)
+	L.PushInteger(int64(dx))
 	L.SetTable(-3)
 	L.PushString("Dy")
-	L.PushInteger(dy)
+	L.PushInteger(int64(dy))
 	L.SetTable(-3)
 }
 
@@ -399,10 +410,10 @@ func LuaPushRoom(L *lua.State, game *Game, room *house.Room) {
 				L.PushString("room")
 				L.SetTable(-3)
 				L.PushString("floor")
-				L.PushInteger(fi)
+				L.PushInteger(int64(fi))
 				L.SetTable(-3)
 				L.PushString("room")
-				L.PushInteger(ri)
+				L.PushInteger(int64(ri))
 				L.SetTable(-3)
 				L.PushString("Pos")
 				LuaPushPoint(L, room.X, room.Y)
@@ -447,13 +458,13 @@ func LuaPushDoor(L *lua.State, game *Game, door *house.Door) {
 					L.PushString("door")
 					L.SetTable(-3)
 					L.PushString("floor")
-					L.PushInteger(fi)
+					L.PushInteger(int64(fi))
 					L.SetTable(-3)
 					L.PushString("room")
-					L.PushInteger(ri)
+					L.PushInteger(int64(ri))
 					L.SetTable(-3)
 					L.PushString("door")
-					L.PushInteger(di)
+					L.PushInteger(int64(di))
 					L.SetTable(-3)
 					return
 				}
@@ -512,7 +523,7 @@ func LuaPushSpawnPoint(L *lua.State, game *Game, sp *house.SpawnPoint) {
 	x, y := sp.Pos()
 	dx, dy := sp.Dims()
 	L.PushString("id")
-	L.PushInteger(index)
+	L.PushInteger(int64(index))
 	L.SetTable(-3)
 	L.PushString("type")
 	L.PushString("SpawnPoint")

@@ -3,7 +3,7 @@ package ai
 import (
 	"fmt"
 	"github.com/MobRulesGames/haunts/game"
-	lua "github.com/MobRulesGames/golua"
+	lua "github.com/MobRulesGames/golua/lua"
 )
 
 func (a *Ai) addIntrudersContext() {
@@ -13,7 +13,7 @@ func (a *Ai) addIntrudersContext() {
 	a.L.Register("AllIntruders", allIntruders(a))
 }
 
-func isActiveIntruder(a *Ai) lua.GoFunction {
+func isActiveIntruder(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "IsActive", game.LuaEntity) {
 			return 0
@@ -32,7 +32,7 @@ func isActiveIntruder(a *Ai) lua.GoFunction {
 	}
 }
 
-func allIntruders(a *Ai) lua.GoFunction {
+func allIntruders(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "AllIntruders") {
 			return 0
@@ -42,7 +42,7 @@ func allIntruders(a *Ai) lua.GoFunction {
 		for _, ent := range a.game.Ents {
 			if ent.ExplorerEnt != nil {
 				count++
-				L.PushInteger(count)
+				L.PushInteger(int64(count))
 				game.LuaPushEntity(L, ent)
 				L.SetTable(-3)
 			}
@@ -51,7 +51,7 @@ func allIntruders(a *Ai) lua.GoFunction {
 	}
 }
 
-func setIntruderMasterInfo(a *Ai) lua.GoFunction {
+func setIntruderMasterInfo(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaCheckParamsOk(L, "SetEntityMasterInfo", game.LuaEntity, game.LuaString, game.LuaAnything) {
 			return 0
@@ -77,7 +77,7 @@ func setIntruderMasterInfo(a *Ai) lua.GoFunction {
 	}
 }
 
-func execIntruder(a *Ai) lua.GoFunction {
+func execIntruder(a *Ai) lua.LuaGoFunction {
 	return func(L *lua.State) int {
 		if !game.LuaNumParamsOk(L, 1, "ExecIntruder") {
 			return 0
