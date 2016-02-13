@@ -16,9 +16,9 @@ import (
 	"sync"
 	"time"
 
-	"code.google.com/p/freetype-go/freetype/truetype"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/opengl/gl"
+	"github.com/golang/freetype/truetype"
 )
 
 var datadir string
