@@ -1,10 +1,11 @@
 package game
 
 import (
-	gl "github.com/MobRulesGames/gogl/gl21"
-	"github.com/MobRulesGames/glop/gui"
-	"github.com/MobRulesGames/haunts/base"
 	"time"
+
+	"github.com/MobRulesGames/glop/gui"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	"github.com/MobRulesGames/haunts/base"
 )
 
 type Overlay struct {

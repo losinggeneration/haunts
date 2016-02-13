@@ -2,6 +2,9 @@ package game
 
 import (
 	"fmt"
+	"path/filepath"
+	"time"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/glop/util/algorithm"
@@ -9,8 +12,6 @@ import (
 	"github.com/MobRulesGames/haunts/mrgnet"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/opengl/gl"
-	"path/filepath"
-	"time"
 )
 
 type gameListBox struct {

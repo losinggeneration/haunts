@@ -2,13 +2,14 @@ package ai
 
 import (
 	"fmt"
+	"sort"
+
 	"github.com/MobRulesGames/glop/util/algorithm"
+	lua "github.com/MobRulesGames/golua/lua"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game"
 	"github.com/MobRulesGames/haunts/game/actions"
 	"github.com/MobRulesGames/haunts/house"
-	lua "github.com/MobRulesGames/golua/lua"
-	"sort"
 )
 
 func (a *Ai) addEntityContext() {

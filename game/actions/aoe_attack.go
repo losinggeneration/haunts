@@ -2,17 +2,18 @@ package actions
 
 import (
 	"encoding/gob"
+	"path/filepath"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/glop/util/algorithm"
+	lua "github.com/MobRulesGames/golua/lua"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game"
 	"github.com/MobRulesGames/haunts/game/status"
 	"github.com/MobRulesGames/haunts/house"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/opengl/gl"
-	lua "github.com/MobRulesGames/golua/lua"
-	"path/filepath"
 )
 
 func registerAoeAttacks() map[string]func() game.Action {

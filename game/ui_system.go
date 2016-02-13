@@ -1,13 +1,14 @@
 package game
 
 import (
+	"path/filepath"
+	"time"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/opengl/gl"
-	"path/filepath"
-	"time"
 )
 
 var Restart func()

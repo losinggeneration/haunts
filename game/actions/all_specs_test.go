@@ -1,8 +1,9 @@
 package actions_test
 
 import (
-	"github.com/MobRulesGames/gospec/src/gospec"
 	"testing"
+
+	"github.com/MobRulesGames/gospec/src/gospec"
 )
 
 func TestAllSpecs(t *testing.T) {

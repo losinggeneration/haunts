@@ -2,12 +2,13 @@ package status
 
 import (
 	"encoding/gob"
-	"github.com/MobRulesGames/haunts/base"
 	"path/filepath"
+
+	"github.com/MobRulesGames/haunts/base"
 )
 
 // Conditions represent instantaneous or ongoing Conditions on an entity.
-// Every round the Condition can 
+// Every round the Condition can
 type Condition interface {
 	// Returns the name of this condition as it should be displayed to the user.
 	Name() string

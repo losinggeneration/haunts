@@ -2,8 +2,9 @@ package base
 
 import (
 	"fmt"
-	"github.com/MobRulesGames/glop/gin"
 	"strings"
+
+	"github.com/MobRulesGames/glop/gin"
 )
 
 type KeyBinds map[string]string

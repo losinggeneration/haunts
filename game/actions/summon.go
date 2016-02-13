@@ -2,15 +2,16 @@ package actions
 
 import (
 	"encoding/gob"
+	"path/filepath"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
+	lua "github.com/MobRulesGames/golua/lua"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game"
 	"github.com/MobRulesGames/haunts/game/status"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/opengl/gl"
-	lua "github.com/MobRulesGames/golua/lua"
-	"path/filepath"
 )
 
 func registerSummonActions() map[string]func() game.Action {

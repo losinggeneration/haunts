@@ -1,11 +1,12 @@
 package house
 
 import (
+	"math"
+	"reflect"
+
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/glop/util/algorithm"
 	"github.com/MobRulesGames/mathgl"
-	"math"
-	"reflect"
 )
 
 // This structure is used for temporary doors (that are being dragged around in

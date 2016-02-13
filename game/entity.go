@@ -2,18 +2,19 @@ package game
 
 import (
 	"encoding/gob"
-	gl "github.com/MobRulesGames/gogl/gl21"
+	"image"
+	"path/filepath"
+	"regexp"
+
 	"github.com/MobRulesGames/glop/sprite"
 	"github.com/MobRulesGames/glop/util/algorithm"
+	gl "github.com/MobRulesGames/gogl/gl21"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game/status"
 	"github.com/MobRulesGames/haunts/house"
 	"github.com/MobRulesGames/haunts/sound"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/mathgl"
-	"image"
-	"path/filepath"
-	"regexp"
 )
 
 type Ai interface {

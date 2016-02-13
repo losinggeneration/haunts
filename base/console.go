@@ -2,11 +2,12 @@ package base
 
 import (
 	"bufio"
+	"strings"
+	"unicode"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/opengl/gl"
-	"strings"
-	"unicode"
 )
 
 const maxLines = 25

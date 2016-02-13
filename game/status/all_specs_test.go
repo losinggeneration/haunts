@@ -1,9 +1,10 @@
 package status_test
 
 import (
+	"testing"
+
 	"github.com/MobRulesGames/gospec/src/gospec"
 	"github.com/MobRulesGames/haunts/game/status"
-	"testing"
 )
 
 func TestAllSpecs(t *testing.T) {

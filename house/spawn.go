@@ -1,12 +1,13 @@
 package house
 
 import (
+	"hash/fnv"
+	"regexp"
+
 	gl "github.com/MobRulesGames/gogl/gl21"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/mathgl"
-	"hash/fnv"
-	"regexp"
 )
 
 var spawn_regex []*regexp.Regexp

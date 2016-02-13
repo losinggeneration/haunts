@@ -2,16 +2,17 @@ package house
 
 import (
 	"fmt"
-	gl "github.com/MobRulesGames/gogl/gl21"
-	"github.com/MobRulesGames/glop/gui"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/haunts/texture"
-	"github.com/MobRulesGames/mathgl"
 	"image"
 	"math"
 	"path/filepath"
 	"strings"
 	"unsafe"
+
+	"github.com/MobRulesGames/glop/gui"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/texture"
+	"github.com/MobRulesGames/mathgl"
 )
 
 func GetAllRoomNames() []string {
@@ -596,7 +597,7 @@ func (room *Room) setupGlStuff() {
 		{dx, 0, dz, 1, 0, lt_lly_ep, lt_urx_ep},
 
 		// Floor
-		// This is the bulk of the floor, containing all but the outer edges of 
+		// This is the bulk of the floor, containing all but the outer edges of
 		// the room.  los_tex can map directly onto this so we don't need to do
 		// anything weird here.
 		{0.5, 0.5, 0, 0.5 / dx, 1 - 0.5/dy, lt_lly_ep, lt_llx_ep},

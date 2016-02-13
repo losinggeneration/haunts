@@ -2,13 +2,10 @@ package base
 
 import (
 	"bytes"
-	"code.google.com/p/freetype-go/freetype/truetype"
 	"encoding/base64"
 	"encoding/gob"
 	"encoding/json"
 	"fmt"
-	"github.com/MobRulesGames/glop/gui"
-	"github.com/MobRulesGames/opengl/gl"
 	"image/color"
 	"io"
 	"io/ioutil"
@@ -18,6 +15,10 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"code.google.com/p/freetype-go/freetype/truetype"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/opengl/gl"
 )
 
 var datadir string

@@ -3,11 +3,12 @@ package status_test
 import (
 	"bytes"
 	"encoding/gob"
+	"path/filepath"
+
 	"github.com/MobRulesGames/gospec/src/gospec"
 	. "github.com/MobRulesGames/gospec/src/gospec"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game/status"
-	"path/filepath"
 )
 
 var datadir string

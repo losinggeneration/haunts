@@ -4,11 +4,12 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/haunts/house"
-	lua "github.com/MobRulesGames/golua/lua"
 	"io"
 	"sort"
+
+	lua "github.com/MobRulesGames/golua/lua"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/house"
 )
 
 type luaEncodable int32
@@ -182,7 +183,7 @@ func LuaToEntity(L *lua.State, game *Game, index int) *Entity {
 
 type FunctionTable map[string]func()
 
-// Create a table in Lua with Go functions 
+// Create a table in Lua with Go functions
 func LuaPushSmartFunctionTable(L *lua.State, tblname string, ft FunctionTable) {
 	// Copy it just in case - I can't imagine someone changing it after passing
 	// it to this function, but I don't want to take any chances.
@@ -238,7 +239,7 @@ func LuaPushEntity(L *lua.State, _ent *Entity) {
 		L.PushNil()
 		return
 	}
-	// id and Name can be added to the ent table as static data since they 
+	// id and Name can be added to the ent table as static data since they
 	// never change.
 	L.NewTable()
 	L.PushString("Name")
@@ -251,122 +252,122 @@ func LuaPushEntity(L *lua.State, _ent *Entity) {
 	L.PushString("Entity")
 	L.SetTable(-3)
 
-/*
-	id := _ent.Id
+	/*
+		id := _ent.Id
 
-	// Meta table for the Entity so that any dynamic data is generated
-	// on-the-fly
-	LuaPushSmartFunctionTable(L, FunctionTable{
-		"Conditions": func() {
-			ent := _ent.Game().EntityById(id)
-			L.NewTable()
-			for _, condition := range ent.Stats.ConditionNames() {
-				L.PushString(condition)
-				L.PushBoolean(true)
-				L.SetTable(-3)
-			}
-		},
-		"Side": func() {
-			ent := _ent.Game().EntityById(id)
-			L.NewTable()
-			sides := map[string]Side{
-				"Denizen":  SideHaunt,
-				"Intruder": SideExplorers,
-				"Npc":      SideNpc,
-				"Object":   SideObject,
-			}
-			for str, side := range sides {
-				L.PushString(str)
-				L.PushBoolean(ent.Side() == side)
-				L.SetTable(-3)
-			}
-		},
-		"State": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushString(ent.Sprite().State())
-		},
-		"Master": func() {
-			ent := _ent.Game().EntityById(id)
-			L.NewTable()
-			for key, val := range ent.Ai_data {
-				L.PushString(key)
-				L.PushString(val)
-				L.SetTable(-3)
-			}
-		},
-		"GearOptions": func() {
-			ent := _ent.Game().EntityById(id)
-			L.NewTable()
-			if ent.ExplorerEnt != nil {
-				for _, gear_name := range ent.ExplorerEnt.Gear_names {
-					var g Gear
-					g.Defname = gear_name
-					base.GetObject("gear", &g)
-					L.PushString(gear_name)
-					L.PushString(g.Large_icon.Path.String())
+		// Meta table for the Entity so that any dynamic data is generated
+		// on-the-fly
+		LuaPushSmartFunctionTable(L, FunctionTable{
+			"Conditions": func() {
+				ent := _ent.Game().EntityById(id)
+				L.NewTable()
+				for _, condition := range ent.Stats.ConditionNames() {
+					L.PushString(condition)
+					L.PushBoolean(true)
 					L.SetTable(-3)
 				}
-			}
-		},
-		"Gear": func() {
-			ent := _ent.Game().EntityById(id)
-			if ent.ExplorerEnt != nil && ent.ExplorerEnt.Gear != nil {
-				L.PushString(ent.ExplorerEnt.Gear.Name)
-			} else {
-				L.PushNil()
-			}
-		},
-		"Actions": func() {
-			ent := _ent.Game().EntityById(id)
-			L.NewTable()
-			for _, action := range ent.Actions {
-				L.PushString(action.String())
-				action.Push(L)
+			},
+			"Side": func() {
+				ent := _ent.Game().EntityById(id)
+				L.NewTable()
+				sides := map[string]Side{
+					"Denizen":  SideHaunt,
+					"Intruder": SideExplorers,
+					"Npc":      SideNpc,
+					"Object":   SideObject,
+				}
+				for str, side := range sides {
+					L.PushString(str)
+					L.PushBoolean(ent.Side() == side)
+					L.SetTable(-3)
+				}
+			},
+			"State": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushString(ent.Sprite().State())
+			},
+			"Master": func() {
+				ent := _ent.Game().EntityById(id)
+				L.NewTable()
+				for key, val := range ent.Ai_data {
+					L.PushString(key)
+					L.PushString(val)
+					L.SetTable(-3)
+				}
+			},
+			"GearOptions": func() {
+				ent := _ent.Game().EntityById(id)
+				L.NewTable()
+				if ent.ExplorerEnt != nil {
+					for _, gear_name := range ent.ExplorerEnt.Gear_names {
+						var g Gear
+						g.Defname = gear_name
+						base.GetObject("gear", &g)
+						L.PushString(gear_name)
+						L.PushString(g.Large_icon.Path.String())
+						L.SetTable(-3)
+					}
+				}
+			},
+			"Gear": func() {
+				ent := _ent.Game().EntityById(id)
+				if ent.ExplorerEnt != nil && ent.ExplorerEnt.Gear != nil {
+					L.PushString(ent.ExplorerEnt.Gear.Name)
+				} else {
+					L.PushNil()
+				}
+			},
+			"Actions": func() {
+				ent := _ent.Game().EntityById(id)
+				L.NewTable()
+				for _, action := range ent.Actions {
+					L.PushString(action.String())
+					action.Push(L)
+					L.SetTable(-3)
+				}
+			},
+			"Pos": func() {
+				ent := _ent.Game().EntityById(id)
+				x, y := ent.Pos()
+				LuaPushPoint(L, x, y)
+			},
+			"Corpus": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushInteger(ent.Stats.Corpus())
+			},
+			"Ego": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushInteger(ent.Stats.Ego())
+			},
+			"HpCur": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushInteger(ent.Stats.HpCur())
+			},
+			"HpMax": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushInteger(ent.Stats.HpMax())
+			},
+			"ApCur": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushInteger(ent.Stats.ApCur())
+			},
+			"ApMax": func() {
+				ent := _ent.Game().EntityById(id)
+				L.PushInteger(ent.Stats.ApMax())
+			},
+			"Info": func() {
+				ent := _ent.Game().EntityById(id)
+				L.NewTable()
+				L.PushString("LastEntityThatIAttacked")
+				LuaPushEntity(L, ent.Game().EntityById(ent.Info.LastEntThatIAttacked))
 				L.SetTable(-3)
-			}
-		},
-		"Pos": func() {
-			ent := _ent.Game().EntityById(id)
-			x, y := ent.Pos()
-			LuaPushPoint(L, x, y)
-		},
-		"Corpus": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushInteger(ent.Stats.Corpus())
-		},
-		"Ego": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushInteger(ent.Stats.Ego())
-		},
-		"HpCur": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushInteger(ent.Stats.HpCur())
-		},
-		"HpMax": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushInteger(ent.Stats.HpMax())
-		},
-		"ApCur": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushInteger(ent.Stats.ApCur())
-		},
-		"ApMax": func() {
-			ent := _ent.Game().EntityById(id)
-			L.PushInteger(ent.Stats.ApMax())
-		},
-		"Info": func() {
-			ent := _ent.Game().EntityById(id)
-			L.NewTable()
-			L.PushString("LastEntityThatIAttacked")
-			LuaPushEntity(L, ent.Game().EntityById(ent.Info.LastEntThatIAttacked))
-			L.SetTable(-3)
-			L.PushString("LastEntThatAttackedMe")
-			LuaPushEntity(L, ent.Game().EntityById(ent.Info.LastEntThatAttackedMe))
-			L.SetTable(-3)
-		},
-	})
-	L.SetMetaTable(-2)
-*/
+				L.PushString("LastEntThatAttackedMe")
+				LuaPushEntity(L, ent.Game().EntityById(ent.Info.LastEntThatAttackedMe))
+				L.SetTable(-3)
+			},
+		})
+		L.SetMetaTable(-2)
+	*/
 }
 
 func LuaPushPoint(L *lua.State, x, y int) {

@@ -1,9 +1,10 @@
 package house
 
 import (
+	"runtime"
+
 	"github.com/MobRulesGames/glop/render"
 	"github.com/MobRulesGames/opengl/gl"
-	"runtime"
 )
 
 const LosMinVisibility = 32

@@ -4,15 +4,16 @@ import (
 	"encoding/gob"
 	"errors"
 	"fmt"
-	"github.com/MobRulesGames/fsnotify"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/haunts/game"
-	lua "github.com/MobRulesGames/golua/lua"
 	"io/ioutil"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/MobRulesGames/fsnotify"
+	lua "github.com/MobRulesGames/golua/lua"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/game"
 )
 
 // The Ai struct contains a glop.AiGraph object as well as a few channels for

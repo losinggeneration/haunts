@@ -2,11 +2,12 @@ package base
 
 import (
 	"fmt"
-	gl "github.com/MobRulesGames/gogl/gl21"
-	"github.com/MobRulesGames/glop/render"
 	"io/ioutil"
 	"path/filepath"
 	"unsafe"
+
+	"github.com/MobRulesGames/glop/render"
+	gl "github.com/MobRulesGames/gogl/gl21"
 )
 
 type Shader struct {

@@ -1,13 +1,14 @@
 package game
 
 import (
-	gl "github.com/MobRulesGames/gogl/gl21"
+	"path/filepath"
+
 	"github.com/MobRulesGames/glop/gui"
+	gl "github.com/MobRulesGames/gogl/gl21"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game/hui"
 	"github.com/MobRulesGames/haunts/house"
 	"github.com/MobRulesGames/haunts/texture"
-	"path/filepath"
 )
 
 type UiSelectMap struct {

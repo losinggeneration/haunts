@@ -2,23 +2,24 @@ package main
 
 import (
 	"fmt"
-	gl "github.com/MobRulesGames/gogl/gl21"
-	"github.com/MobRulesGames/glop/gin"
-	"github.com/MobRulesGames/glop/gos"
-	"github.com/MobRulesGames/glop/gui"
-	"github.com/MobRulesGames/glop/render"
-	"github.com/MobRulesGames/glop/system"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/haunts/game"
-	"github.com/MobRulesGames/haunts/house"
-	"github.com/MobRulesGames/haunts/sound"
-	"github.com/MobRulesGames/memory"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"runtime"
 	"runtime/debug"
 	"runtime/pprof"
+
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gos"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/glop/render"
+	"github.com/MobRulesGames/glop/system"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/game"
+	"github.com/MobRulesGames/haunts/house"
+	"github.com/MobRulesGames/haunts/sound"
+	"github.com/MobRulesGames/memory"
 
 	// Need to pull in all of the actions we define here and not in
 	// haunts/game because haunts/game/actions depends on it

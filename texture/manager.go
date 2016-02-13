@@ -1,12 +1,6 @@
 package texture
 
 import (
-	"github.com/MobRulesGames/glop/render"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/mathgl"
-	"github.com/MobRulesGames/memory"
-	"github.com/MobRulesGames/opengl/gl"
-	"github.com/MobRulesGames/opengl/glu"
 	"image"
 	"image/draw"
 	_ "image/jpeg"
@@ -14,6 +8,13 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	"github.com/MobRulesGames/glop/render"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/mathgl"
+	"github.com/MobRulesGames/memory"
+	"github.com/MobRulesGames/opengl/gl"
+	"github.com/MobRulesGames/opengl/glu"
 )
 
 type Object struct {

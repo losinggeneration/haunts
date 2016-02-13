@@ -1,11 +1,12 @@
 package house
 
 import (
+	"unsafe"
+
 	gl "github.com/MobRulesGames/gogl/gl21"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/texture"
 	"github.com/MobRulesGames/mathgl"
-	"unsafe"
 )
 
 func MakeWallTexture(name string) *WallTexture {

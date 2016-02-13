@@ -2,8 +2,9 @@ package ai
 
 import (
 	"fmt"
-	"github.com/MobRulesGames/haunts/game"
+
 	lua "github.com/MobRulesGames/golua/lua"
+	"github.com/MobRulesGames/haunts/game"
 )
 
 func (a *Ai) addIntrudersContext() {

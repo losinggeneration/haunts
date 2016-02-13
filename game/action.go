@@ -4,11 +4,12 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
+
 	"github.com/MobRulesGames/glop/gui"
+	lua "github.com/MobRulesGames/golua/lua"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/house"
 	"github.com/MobRulesGames/haunts/texture"
-	lua "github.com/MobRulesGames/golua/lua"
 )
 
 var action_map map[string]func() Action
@@ -101,7 +102,7 @@ func (bae *BasicActionExec) SetBasicData(ent *Entity, action Action) {
 }
 
 // When an entity commits to an action it will create an ActionExec.  This
-// will be passed to the Action 
+// will be passed to the Action
 type ActionExec interface {
 	// Entity whose action created this ActionExec
 	EntityId() EntityId

@@ -1,9 +1,10 @@
 package texture
 
 import (
-	"github.com/MobRulesGames/memory"
 	"image"
 	"image/color"
+
+	"github.com/MobRulesGames/memory"
 )
 
 // NOTE: All of this code is basically ripped from the Go source, it's just

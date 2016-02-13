@@ -2,18 +2,19 @@ package actions
 
 import (
 	"encoding/gob"
-	gl "github.com/MobRulesGames/gogl/gl21"
+	"math"
+	"path/filepath"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/glop/util/algorithm"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	lua "github.com/MobRulesGames/golua/lua"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game"
 	"github.com/MobRulesGames/haunts/game/status"
 	"github.com/MobRulesGames/haunts/house"
 	"github.com/MobRulesGames/haunts/texture"
-	lua "github.com/MobRulesGames/golua/lua"
-	"math"
-	"path/filepath"
 )
 
 func registerMoves() map[string]func() game.Action {

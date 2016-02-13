@@ -2,15 +2,16 @@ package game
 
 import (
 	"fmt"
-	gl "github.com/MobRulesGames/gogl/gl21"
+	"math"
+	"path/filepath"
+
 	"github.com/MobRulesGames/glop/gin"
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/glop/util/algorithm"
+	gl "github.com/MobRulesGames/gogl/gl21"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/sound"
 	"github.com/MobRulesGames/haunts/texture"
-	"math"
-	"path/filepath"
 )
 
 type Option interface {

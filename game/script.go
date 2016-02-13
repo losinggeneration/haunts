@@ -3,9 +3,15 @@ package game
 import (
 	"bytes"
 	"fmt"
-	gl "github.com/MobRulesGames/gogl/gl21"
+	"io/ioutil"
+	"path/filepath"
+	"regexp"
+	"time"
+
 	"github.com/MobRulesGames/glop/gui"
 	"github.com/MobRulesGames/glop/util/algorithm"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	lua "github.com/MobRulesGames/golua/lua"
 	"github.com/MobRulesGames/haunts/base"
 	"github.com/MobRulesGames/haunts/game/hui"
 	"github.com/MobRulesGames/haunts/game/status"
@@ -13,11 +19,6 @@ import (
 	"github.com/MobRulesGames/haunts/mrgnet"
 	"github.com/MobRulesGames/haunts/sound"
 	"github.com/MobRulesGames/haunts/texture"
-	lua "github.com/MobRulesGames/golua/lua"
-	"io/ioutil"
-	"path/filepath"
-	"regexp"
-	"time"
 )
 
 type gameScript struct {
@@ -78,7 +79,7 @@ func startGameScript(gp *GamePanel, path string, player *Player, data map[string
 			args := []interface{}{}
 			for i := start_idx; i <= n; i++ {
 				t := l.Type(n)
-				switch(t) {
+				switch t {
 				case lua.LUA_TBOOLEAN:
 					args = append(args, l.ToBoolean(n))
 				case lua.LUA_TNUMBER:
@@ -154,9 +155,9 @@ func startGameScript(gp *GamePanel, path string, player *Player, data map[string
 	LuaPushSmartFunctionTable(gp.script.L, "Net", FunctionTable{
 		"Active": func() {
 			gp.script.L.PushGoClosure(func(L *lua.State) int {
-					L.PushBoolean(game_key != "")
-					return 1
-				}, 1)
+				L.PushBoolean(game_key != "")
+				return 1
+			}, 1)
 		},
 		"Side":                func() { gp.script.L.PushGoClosure(netSideFunc(gp), 1) },
 		"UpdateState":         func() { gp.script.L.PushGoClosure(updateStateFunc(gp), 1) },
@@ -190,7 +191,7 @@ func startGameScript(gp *GamePanel, path string, player *Player, data map[string
 	gp.script.sync = make(chan struct{})
 	base.Log().Printf("Sync: %p", gp.script.sync)
 
-	// if resp.Game.Denizens_id == 
+	// if resp.Game.Denizens_id ==
 	go func() {
 		if game_key != "" {
 			var net_id mrgnet.NetId

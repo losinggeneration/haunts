@@ -4,16 +4,17 @@ import (
 	"bytes"
 	"encoding/gob"
 	"errors"
-	gl "github.com/MobRulesGames/gogl/gl21"
-	"github.com/MobRulesGames/cmwc"
-	"github.com/MobRulesGames/glop/sprite"
-	"github.com/MobRulesGames/glop/util/algorithm"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/haunts/house"
-	"github.com/MobRulesGames/haunts/mrgnet"
 	"reflect"
 	"regexp"
 	"time"
+
+	"github.com/MobRulesGames/cmwc"
+	"github.com/MobRulesGames/glop/sprite"
+	"github.com/MobRulesGames/glop/util/algorithm"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/house"
+	"github.com/MobRulesGames/haunts/mrgnet"
 )
 
 type Purpose int

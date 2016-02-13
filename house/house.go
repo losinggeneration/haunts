@@ -1,16 +1,17 @@
 package house
 
 import (
-	gl "github.com/MobRulesGames/gogl/gl21"
-	"github.com/MobRulesGames/glop/gin"
-	"github.com/MobRulesGames/glop/gui"
-	"github.com/MobRulesGames/glop/util/algorithm"
-	"github.com/MobRulesGames/haunts/base"
-	"github.com/MobRulesGames/haunts/texture"
 	"image"
 	"math"
 	"path/filepath"
 	"unsafe"
+
+	"github.com/MobRulesGames/glop/gin"
+	"github.com/MobRulesGames/glop/gui"
+	"github.com/MobRulesGames/glop/util/algorithm"
+	gl "github.com/MobRulesGames/gogl/gl21"
+	"github.com/MobRulesGames/haunts/base"
+	"github.com/MobRulesGames/haunts/texture"
 )
 
 type Room struct {
