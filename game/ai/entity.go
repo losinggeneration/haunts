@@ -20,41 +20,41 @@ func (a *Ai) addEntityContext() {
 
 	//a.L.NewTable()
 	game.LuaPushSmartFunctionTable(a.L, "Do", game.FunctionTable{
-		"BasicAttack":        func() { a.L.PushGoClosure(DoBasicAttackFunc(a), 1) },
-		"AoeAttack":          func() { a.L.PushGoClosure(DoAoeAttackFunc(a), 1) },
-		"Move":               func() { a.L.PushGoClosure(DoMoveFunc(a), 1) },
-		"DoorToggle":         func() { a.L.PushGoClosure(DoDoorToggleFunc(a), 1) },
-		"InteractWithObject": func() { a.L.PushGoClosure(DoInteractWithObjectFunc(a), 1) },
+		"BasicAttack":        func() { a.L.PushGoClosure(DoBasicAttackFunc(a)) },
+		"AoeAttack":          func() { a.L.PushGoClosure(DoAoeAttackFunc(a)) },
+		"Move":               func() { a.L.PushGoClosure(DoMoveFunc(a)) },
+		"DoorToggle":         func() { a.L.PushGoClosure(DoDoorToggleFunc(a)) },
+		"InteractWithObject": func() { a.L.PushGoClosure(DoInteractWithObjectFunc(a)) },
 	})
 	//a.L.SetMetaTable(-2)
 	//a.L.SetGlobal("Do")
 
 	//a.L.NewTable()
 	game.LuaPushSmartFunctionTable(a.L, "Utils", game.FunctionTable{
-		"AllPathablePoints":          func() { a.L.PushGoClosure(AllPathablePointsFunc(a), 1) },
-		"RangedDistBetweenPositions": func() { a.L.PushGoClosure(RangedDistBetweenPositionsFunc(a), 1) },
-		"RangedDistBetweenEntities":  func() { a.L.PushGoClosure(RangedDistBetweenEntitiesFunc(a), 1) },
-		"NearestNEntities":           func() { a.L.PushGoClosure(NearestNEntitiesFunc(a.ent), 1) },
-		"Waypoints":                  func() { a.L.PushGoClosure(WaypointsFunc(a.ent), 1) },
-		"Exists":                     func() { a.L.PushGoClosure(ExistsFunc(a), 1) },
-		"BestAoeAttackPos":           func() { a.L.PushGoClosure(BestAoeAttackPosFunc(a), 1) },
-		"NearbyUnexploredRooms":      func() { a.L.PushGoClosure(NearbyUnexploredRoomsFunc(a), 1) },
-		"RoomPath":                   func() { a.L.PushGoClosure(RoomPathFunc(a), 1) },
-		"RoomContaining":             func() { a.L.PushGoClosure(RoomContainingFunc(a), 1) },
-		"RoomsAreEqual":              func() { a.L.PushGoClosure(RoomAreEqualFunc(a), 1) },
-		"AllDoorsBetween":            func() { a.L.PushGoClosure(AllDoorsBetween(a), 1) },
-		"AllDoorsOn":                 func() { a.L.PushGoClosure(AllDoorsOn(a), 1) },
-		"DoorPositions":              func() { a.L.PushGoClosure(DoorPositionsFunc(a), 1) },
-		"DoorIsOpen":                 func() { a.L.PushGoClosure(DoorIsOpenFunc(a), 1) },
-		"RoomPositions":              func() { a.L.PushGoClosure(RoomPositionsFunc(a), 1) },
-		"Rand":                       func() { a.L.PushGoClosure(randFunc(a), 1) },
+		"AllPathablePoints":          func() { a.L.PushGoClosure(AllPathablePointsFunc(a)) },
+		"RangedDistBetweenPositions": func() { a.L.PushGoClosure(RangedDistBetweenPositionsFunc(a)) },
+		"RangedDistBetweenEntities":  func() { a.L.PushGoClosure(RangedDistBetweenEntitiesFunc(a)) },
+		"NearestNEntities":           func() { a.L.PushGoClosure(NearestNEntitiesFunc(a.ent)) },
+		"Waypoints":                  func() { a.L.PushGoClosure(WaypointsFunc(a.ent)) },
+		"Exists":                     func() { a.L.PushGoClosure(ExistsFunc(a)) },
+		"BestAoeAttackPos":           func() { a.L.PushGoClosure(BestAoeAttackPosFunc(a)) },
+		"NearbyUnexploredRooms":      func() { a.L.PushGoClosure(NearbyUnexploredRoomsFunc(a)) },
+		"RoomPath":                   func() { a.L.PushGoClosure(RoomPathFunc(a)) },
+		"RoomContaining":             func() { a.L.PushGoClosure(RoomContainingFunc(a)) },
+		"RoomsAreEqual":              func() { a.L.PushGoClosure(RoomAreEqualFunc(a)) },
+		"AllDoorsBetween":            func() { a.L.PushGoClosure(AllDoorsBetween(a)) },
+		"AllDoorsOn":                 func() { a.L.PushGoClosure(AllDoorsOn(a)) },
+		"DoorPositions":              func() { a.L.PushGoClosure(DoorPositionsFunc(a)) },
+		"DoorIsOpen":                 func() { a.L.PushGoClosure(DoorIsOpenFunc(a)) },
+		"RoomPositions":              func() { a.L.PushGoClosure(RoomPositionsFunc(a)) },
+		"Rand":                       func() { a.L.PushGoClosure(randFunc(a)) },
 	})
 	//a.L.SetMetaTable(-2)
 	//a.L.SetGlobal("Utils")
 
 	//a.L.NewTable()
 	game.LuaPushSmartFunctionTable(a.L, "Cheat", game.FunctionTable{
-		"GetEntsByName": func() { a.L.PushGoClosure(GetEntsByName(a), 1) },
+		"GetEntsByName": func() { a.L.PushGoClosure(GetEntsByName(a)) },
 	})
 	//a.L.SetMetaTable(-2)
 	//a.L.SetGlobal("Cheat")
@@ -518,8 +518,7 @@ func NearestNEntitiesFunc(me *game.Entity) lua.LuaGoFunction {
 		if !valid_kinds[kind] {
 			err_str := fmt.Sprintf("NearestNEntities expects kind in the set ['intruder' 'denizen' 'servitor' 'master' 'minion'], got %s.", kind)
 			base.Warn().Printf(err_str)
-			L.PushString(err_str)
-			L.Error()
+			L.RaiseError(err_str)
 			return 0
 		}
 		var eds entityDistSlice

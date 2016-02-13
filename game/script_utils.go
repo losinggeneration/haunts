@@ -221,7 +221,7 @@ func LuaPushSmartFunctionTable(L *lua.State, tblname string, ft FunctionTable) {
 			L.PushNil()
 		}
 		return 1
-	}, 1)
+	})
 	L.SetTable(-3)
 
 	L.SetMetaTable(-2)
