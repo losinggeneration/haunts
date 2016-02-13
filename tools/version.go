@@ -32,14 +32,14 @@ func read(path string) (string, error) {
 }
 
 func main() {
-	head, err := read(filepath.Join("..", ".git", "HEAD"))
+	head, err := read(filepath.Join(".git", "HEAD"))
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		return
 	}
 	head = strings.TrimSpace(head)
 
-	target := filepath.Join("..", "GEN_version.go")
+	target := "GEN_version.go"
 	os.Remove(target) // Don't care about errors on this one
 	f, err := os.Create(target)
 	if err != nil {
