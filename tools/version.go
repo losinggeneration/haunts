@@ -12,10 +12,10 @@ import (
 
 var outputTemplate = template.Must(template.New("output").Parse(outputTemplateStr))
 
-const outputTemplateStr = `
-package main
+const outputTemplateStr = `package main
+
 func Version() string {
-  return "{{.}}"
+	return "{{.}}"
 }
 `
 
