@@ -1,0 +1,86 @@
+hash: 9896550568c0bea854afbc06b4443df597deaf1807a38bb6fb877c2b74d0dd16
+updated: 2016-02-13T21:56:26.115280524-08:00
+imports:
+- name: github.com/golang/freetype
+  version: 2b7eb15daa06ff78da3c8c1c88f568a79fa970a2
+  subpackages:
+  - truetype
+  - raster
+- name: github.com/MobRulesGames/cmwc
+  version: dbf3c8fb6b644f90c3168dc93b93c205f728fbdb
+  repo: git@github.com:losinggeneration/cmwc.git
+  vcs: git
+  subpackages:
+  - core
+- name: github.com/MobRulesGames/fmod
+  version: 13ffc1c96f91a069c9ffa1849a81fa150fd58243
+  repo: git@github.com:losinggeneration/fmod.git
+  vcs: git
+  subpackages:
+  - base
+  - event
+- name: github.com/MobRulesGames/fsnotify
+  version: b4a5d195b5436516453163f20cb25f490611831c
+  repo: git@github.com:losinggeneration/fsnotify.git
+  vcs: git
+- name: github.com/MobRulesGames/glop
+  version: a3b4a905b498cd5b1a5cfdf8424ee4c408b0441b
+  repo: git@github.com:losinggeneration/glop.git
+  vcs: git
+  subpackages:
+  - gin
+  - gos
+  - gui
+  - render
+  - sprite
+  - system
+  - util/algorithm
+- name: github.com/MobRulesGames/gogl
+  version: eec2b9fe9d2662b0405c16241e32397ffdbc20dc
+  repo: git@github.com:losinggeneration/gogl.git
+  vcs: git
+  subpackages:
+  - gl21
+- name: github.com/MobRulesGames/GoLLRB
+  version: 3fc43d9ae2fc2ecee97527398dba4c0237cda465
+  repo: git@github.com:losinggeneration/GoLLRB.git
+  vcs: git
+  subpackages:
+  - llrb
+- name: github.com/MobRulesGames/golua
+  version: aa40b80e00c3d3dfcd73975b512058d95cb93cf8
+  repo: git@github.com:losinggeneration/golua.git
+  vcs: git
+  subpackages:
+  - lua
+- name: github.com/MobRulesGames/mathgl
+  version: 31c2111e637c437a8693791aed204ef5a78e307a
+  repo: git@github.com:losinggeneration/mathgl.git
+  vcs: git
+- name: github.com/MobRulesGames/memory
+  version: a577b2103e24907a39e67a1de836cfa1307114d3
+  repo: git@github.com:losinggeneration/memory.git
+  vcs: git
+- name: github.com/MobRulesGames/opengl
+  version: 0a507cb7340b5fcd79f2ad2a8af1a2766fda1a6a
+  repo: git@github.com:losinggeneration/opengl.git
+  vcs: git
+  subpackages:
+  - gl
+  - glu
+- name: github.com/MobRulesGames/stringz
+  version: 4e485483e475810d01e15b0d6a404d206cf69367
+  repo: git@github.com:losinggeneration/stringz.git
+  vcs: git
+  subpackages:
+  - core
+- name: github.com/MobRulesGames/yedparse
+  version: 70dda778354e7ae8f2811bb1ced0a2374a91d9dc
+  repo: git@github.com:losinggeneration/yedparse.git
+  vcs: git
+- name: golang.org/x/image
+  version: 7c492694a6443a92fd349fda0c4c7b587040f161
+  subpackages:
+  - font
+  - math/fixed
+devImports: []
