@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+	"flag"
 	"fmt"
 	"math/rand"
 	"os"
@@ -43,6 +45,8 @@ var (
 	game_box                  *lowerLeftTable
 	game_panel                *game.GamePanel
 	zooming, dragging, hiding bool
+
+	maxSearchDepth = flag.Uint("maxSearchDepth", 5, "The maximum search depth we should use to look for the data directory")
 )
 
 func loadAllRegistries() {
@@ -56,18 +60,54 @@ func loadAllRegistries() {
 	status.RegisterAllConditions()
 }
 
+// isDir checks if the path param is a directory or not
+func isDir(path string) bool {
+	stat, err := os.Stat(path)
+	return err == nil && stat.IsDir()
+}
+
+// findDataDir takes a path and attempts to find a "data" directory somewhere up the directory hierarchy.
+// TODO this should probably search further into the hierarchy not out of it
+func findDataDir(path string, maxSearch uint) (string, error) {
+	if !isDir(path) {
+		return "", errors.New("Invalid path")
+	}
+
+	check := filepath.Join(path, "data")
+	if isDir(check) {
+		return check, nil
+	}
+
+	maxSearch--
+	if maxSearch <= 0 {
+		return "", errors.New("Unable to find data directory")
+	}
+
+	return findDataDir(filepath.Join(path, ".."), maxSearch)
+}
+
 func init() {
 	runtime.LockOSThread()
 	sys = system.Make(gos.GetSystemInterface())
 
+	// TODO WTF? A deterministic random seed?
 	rand.Seed(100)
-	// TODO: This should not be OS-specific
-	datadir = filepath.Join(os.Args[0], "..", "..")
-	base.SetDatadir(datadir)
-	base.Log().Printf("Setting datadir: %s", datadir)
-	err := house.SetDatadir(datadir)
+
+	flag.Parse()
+
+	cwd, err := os.Getwd()
 	if err != nil {
-		panic(err.Error())
+		panic(err)
+	}
+
+	datadir, err = findDataDir(cwd, *maxSearchDepth)
+	if err != nil {
+		panic(err)
+	}
+
+	base.SetDatadir(datadir)
+	if err := house.SetDatadir(datadir); err != nil {
+		panic(err)
 	}
 
 	var key_binds base.KeyBinds
