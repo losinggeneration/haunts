@@ -1,17 +1,26 @@
-*.6
-haunts_app
-haunts.app
-shaunts.app
 .DS_Store
 _test
-*.sublime-project
-*.sublime-workspace
-GEN*
 openme
 *.gob
 *.log
-data/store
 *.fsb
+
+# Go 1.5+ vendor directory
+vendor
+
+# Sublime Text files
+*.sublime-project
+*.sublime-workspace
+
+# VIM files
 *~
 .*.swp
+
+# compiled filed
+haunts_app
+haunts.app
+shaunts.app
+haunts
+data/bin/
+data/store
 
