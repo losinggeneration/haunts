@@ -14,6 +14,9 @@ var outputTemplate = template.Must(template.New("output").Parse(outputTemplateSt
 
 const outputTemplateStr = `package main
 
+// This file is auto-generated with go generate
+
+// Version returns the version of Haunts
 func Version() string {
 	return "{{.}}"
 }
@@ -39,7 +42,7 @@ func main() {
 	}
 	head = strings.TrimSpace(head)
 
-	target := "GEN_version.go"
+	target := "generate_version.go"
 	os.Remove(target) // Don't care about errors on this one
 	f, err := os.Create(target)
 	if err != nil {

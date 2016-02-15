@@ -197,8 +197,6 @@ func (llt *lowerLeftTable) AddChild(w gui.Widget) {
 	llt.AnchorBox.AddChild(w, gui.Anchor{0, 0, 0, 0})
 }
 
-//go:generate go run tools/version.go
-
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
