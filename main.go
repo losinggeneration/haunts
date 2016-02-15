@@ -86,15 +86,7 @@ func findDataDir(path string, maxSearch uint) (string, error) {
 	return findDataDir(filepath.Join(path, ".."), maxSearch)
 }
 
-func init() {
-	runtime.LockOSThread()
-	sys = system.Make(gos.GetSystemInterface())
-
-	// TODO WTF? A deterministic random seed?
-	rand.Seed(100)
-
-	flag.Parse()
-
+func setupDataDirectories() {
 	cwd, err := os.Getwd()
 	if err != nil {
 		panic(err)
@@ -109,12 +101,28 @@ func init() {
 	if err := house.SetDatadir(datadir); err != nil {
 		panic(err)
 	}
+}
 
+func setupKeyBindings() {
 	var key_binds base.KeyBinds
 	base.LoadJson(filepath.Join(datadir, "key_binds.json"), &key_binds)
 	key_map = key_binds.MakeKeyMap()
 	base.SetDefaultKeyMap(key_map)
+}
 
+func init() {
+	runtime.LockOSThread()
+	sys = system.Make(gos.GetSystemInterface())
+
+	// TODO WTF? A deterministic random seed?
+	rand.Seed(100)
+
+	flag.Parse()
+
+	setupDataDirectories()
+	setupKeyBindings()
+
+	// FIXME Window size constants?
 	wdx = 1024
 	wdy = 750
 }
